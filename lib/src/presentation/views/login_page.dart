@@ -1,12 +1,93 @@
+import 'package:fitpulse/src/presentation/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
+
+import '../widgets/text_formfield_fit_pulse.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text('Login Page'),
+    return Scaffold(
+      backgroundColor: Colors.black,
+      bottomSheet: BottomSheet(
+        enableDrag: true,
+        onClosing: () {},
+        builder: (context) {
+          return LayoutBuilder(
+            builder: (_, constraints) {
+              return Container(
+                height: 450,
+                // width: constraints.maxWidth,
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 50, vertical: 10),
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const SizedBox(height: 25),
+                      const Text(
+                        'Create account',
+                        style: TextStyle(
+                          // 'Inter',
+                          fontSize: 32,
+                          fontWeight: FontWeight.w600,
+                          height: 1.2125,
+                        ),
+                      ),
+                      const SizedBox(height: 37),
+                      const TextFormFieldPulse(
+                          hintText: 'Email', icon: Icons.alternate_email),
+                      const SizedBox(height: 10),
+                      const TextFormFieldPulse(
+                          hintText: 'Password', icon: Icons.lock),
+                      const SizedBox(height: 10),
+                      const TextFormFieldPulse(
+                          hintText: 'Confirm Password', icon: Icons.lock),
+                      const SizedBox(height: 37),
+                      DocsUploadThemedButton(
+                          onTap: () {},
+                          text: 'Continue',
+                          fontSize: 16,
+                          height: 55,
+                          showArrow: false,
+                          hMargin: 0),
+                      const SizedBox(height: 2),
+                    ],
+                  ),
+                ),
+              );
+            },
+          );
+        },
+      ),
+      body: Stack(
+        children: [
+          Align(
+            heightFactor: 1,
+            child: Image.asset(
+              'assets/images/create_account.png',
+              width: double.infinity,
+              fit: BoxFit.cover,
+            ),
+          ),
+          const Align(
+            // alignment: Alignment.center,
+            heightFactor: 6.7,
+            child: Text(
+              'FitPulse',
+              style: TextStyle(
+                fontFamily: 'Outfit',
+                fontSize: 48,
+                fontWeight: FontWeight.w600,
+                height: 1.26,
+                color: Color(0xffffffff),
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

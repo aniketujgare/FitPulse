@@ -1,5 +1,6 @@
 import 'package:appwrite/appwrite.dart';
 import 'package:appwrite/models.dart' as models;
+import 'package:appwrite/models.dart';
 
 import '../datasources/appwrite.dart';
 
@@ -14,6 +15,11 @@ class AuthRepository {
     } on AppwriteException catch (e) {
       return false;
     }
+  }
+
+  Future<User> getUser() async {
+    final user = await account.get();
+    return user;
   }
 
   Future<models.User> signUp(

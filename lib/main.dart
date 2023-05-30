@@ -1,11 +1,11 @@
-import 'package:fitpulse/src/data/datasources/appwrite.dart';
 import 'package:fitpulse/src/data/repositories/auth_repository.dart';
 import 'package:fitpulse/src/presentation/blocs/auth_bloc/auth_bloc.dart';
-import 'package:fitpulse/src/presentation/views/home_page.dart';
-import 'package:fitpulse/src/presentation/views/login_page.dart';
 import 'package:flutter/material.dart';
-import 'package:appwrite/appwrite.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:dynamic_color/dynamic_color.dart';
+import 'src/config/router/app_router.dart';
+import 'src/config/themes/color_schemes.g.dart';
+import 'src/config/themes/custom_color.g.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,48 +17,41 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final authRepository = AuthRepository();
-    return BlocProvider(
-      create: (context) =>
-          AuthBloc(authRepository: authRepository)..add(AuthInitializeEvent()),
-      child: MaterialApp(
-        title: 'FitPulse',
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-          useMaterial3: true,
-        ),
-        home: const Home(),
-      ),
-    );
-  }
-}
+    return DynamicColorBuilder(
+      builder: (ColorScheme? lightDynamic, ColorScheme? darkDynamic) {
+        ColorScheme lightScheme;
+        ColorScheme darkScheme;
 
-class Home extends StatelessWidget {
-  const Home({super.key});
+        if (lightDynamic != null && darkDynamic != null) {
+          lightScheme = lightDynamic.harmonized();
+          lightCustomColors = lightCustomColors.harmonized(lightScheme);
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        children: [
-          SizedBox(height: 100),
-          FloatingActionButton(onPressed: () async {
-            context.read<AuthBloc>().add(LogOutEvent());
-          }),
-          Center(
-            child: BlocBuilder<AuthBloc, AuthState>(
-              builder: (context, state) {
-                if (state is AuthInitial) {
-                  return const CircularProgressIndicator();
-                } else if (state is AuthAuthenticated) {
-                  return const HomePage();
-                } else {
-                  return const LoginPage();
-                }
-              },
-            ),
+          // Repeat for the dark color scheme.
+          darkScheme = darkDynamic.harmonized();
+          darkCustomColors = darkCustomColors.harmonized(darkScheme);
+        } else {
+          // Otherwise, use fallback schemes.
+          lightScheme = lightColorScheme;
+          darkScheme = darkColorScheme;
+        }
+
+        return MaterialApp.router(
+          debugShowCheckedModeBanner: false,
+          routerConfig: GoRout().router,
+          theme: ThemeData(
+            useMaterial3: true,
+            colorScheme: lightScheme,
+            extensions: [lightCustomColors],
+            fontFamily: 'Inter',
           ),
-        ],
-      ),
+          darkTheme: ThemeData(
+            useMaterial3: true,
+            colorScheme: darkScheme,
+            extensions: [darkCustomColors],
+            fontFamily: 'Inter',
+          ),
+        );
+      },
     );
   }
 }

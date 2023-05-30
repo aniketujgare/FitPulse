@@ -1,4 +1,7 @@
+import 'dart:ffi';
+
 import 'package:appwrite/appwrite.dart';
+import 'package:appwrite/models.dart';
 import 'package:equatable/equatable.dart';
 import 'package:fitpulse/src/data/datasources/appwrite.dart';
 import 'package:fitpulse/src/data/repositories/auth_repository.dart';
@@ -15,7 +18,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       bool session = await authRepository.checkSession();
 
       if (session == true) {
-        emit(AuthAuthenticated());
+        final user = await authRepository.getUser();
+        emit(AuthAuthenticated(user: user));
       } else {
         //log in user
         // const email = 'aniket@appwrite.io';
