@@ -40,6 +40,7 @@ class LoginPage extends StatelessWidget {
                           fontSize: 32,
                           fontWeight: FontWeight.w600,
                           height: 1.2125,
+                          color: Colors.black,
                         ),
                       ),
                       const SizedBox(height: 37),
@@ -53,7 +54,7 @@ class LoginPage extends StatelessWidget {
                         onPressed: () {},
                         child: const Text(
                           'Forgot Password?',
-                          textAlign: TextAlign.center,
+                          style: TextStyle(color: Colors.black),
                         ),
                       ),
                       const SizedBox(height: 10),

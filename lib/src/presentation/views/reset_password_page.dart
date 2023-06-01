@@ -36,11 +36,11 @@ class ResetPasswordPage extends StatelessWidget {
                       const Text(
                         'Reset Password',
                         style: TextStyle(
-                          // 'Inter',
-                          fontSize: 32,
-                          fontWeight: FontWeight.w600,
-                          height: 1.2125,
-                        ),
+                            // 'Inter',
+                            fontSize: 32,
+                            fontWeight: FontWeight.w600,
+                            height: 1.2125,
+                            color: Colors.black),
                       ),
                       const SizedBox(height: 37),
                       const TextFormFieldPulse(
