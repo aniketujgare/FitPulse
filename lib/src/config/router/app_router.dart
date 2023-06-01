@@ -1,11 +1,14 @@
 import 'package:fitpulse/src/config/router/app_router_constants.dart';
-import 'package:fitpulse/src/presentation/views/login_page.dart';
+import 'package:fitpulse/src/presentation/views/complete_profile_page.dart';
+import 'package:fitpulse/src/presentation/views/create_account_page.dart';
+import 'package:fitpulse/src/presentation/views/reset_password_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../presentation/blocs/auth_bloc/auth_bloc.dart';
 import '../../presentation/views/home_page.dart';
+import '../../presentation/views/login_page.dart';
 
 class GoRout {
   GoRouter router = GoRouter(
@@ -19,9 +22,10 @@ class GoRout {
     // },
     routes: [
       GoRoute(
-        name: GoRoutConstants.loginRoutName,
-        path: '/',
-        pageBuilder: (context, state) => const MaterialPage(child: LoginPage()),
+        name: GoRoutConstants.createAccountRoutName,
+        path: '/createAccount',
+        pageBuilder: (context, state) =>
+            const MaterialPage(child: CreateAccountPage()),
       ),
       GoRoute(
         name: GoRoutConstants.homeRoutName,
@@ -31,6 +35,23 @@ class GoRout {
             userEmail: 'aniket@go.com',
           ),
         ),
+      ),
+      GoRoute(
+        name: GoRoutConstants.loginRoutName,
+        path: '/login',
+        pageBuilder: (context, state) => const MaterialPage(child: LoginPage()),
+      ),
+      GoRoute(
+        name: GoRoutConstants.resetPasswordRoutName,
+        path: '/resetPassword',
+        pageBuilder: (context, state) =>
+            const MaterialPage(child: ResetPasswordPage()),
+      ),
+      GoRoute(
+        name: GoRoutConstants.completeProfileRoutName,
+        path: '/',
+        pageBuilder: (context, state) =>
+            const MaterialPage(child: CompleteProfilePage()),
       ),
     ],
   );

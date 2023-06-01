@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class TextFormFieldPulse extends StatelessWidget {
   final String hintText;
-  final IconData icon;
+  final Widget icon;
   const TextFormFieldPulse({
     super.key,
     required this.hintText,
@@ -14,10 +14,10 @@ class TextFormFieldPulse extends StatelessWidget {
     return TextFormField(
       textAlign: TextAlign.start,
       decoration: InputDecoration(
-        prefixIcon: Icon(
-          icon,
-          color: const Color(0xffADB6C1),
-        ),
+        prefixIcon: icon,
+        prefixIconColor: const Color(0xffADB6C1),
+        prefixIconConstraints:
+            const BoxConstraints(minHeight: 20, minWidth: 50),
         hintText: hintText,
         hintStyle: const TextStyle(
           color: Color(0xffADB6C1),

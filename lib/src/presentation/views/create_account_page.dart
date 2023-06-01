@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 
 import '../widgets/text_formfield_fit_pulse.dart';
 
-class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+class CreateAccountPage extends StatelessWidget {
+  const CreateAccountPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,7 @@ class LoginPage extends StatelessWidget {
           return LayoutBuilder(
             builder: (_, constraints) {
               return Container(
-                height: 400,
+                height: 450,
                 // width: constraints.maxWidth,
                 decoration: const BoxDecoration(
                   color: Colors.white,
@@ -34,7 +34,7 @@ class LoginPage extends StatelessWidget {
                     children: [
                       const SizedBox(height: 25),
                       const Text(
-                        'Login',
+                        'Create account',
                         style: TextStyle(
                           // 'Inter',
                           fontSize: 32,
@@ -49,17 +49,12 @@ class LoginPage extends StatelessWidget {
                       const TextFormFieldPulse(
                           hintText: 'Password', icon: Icon(Icons.lock)),
                       const SizedBox(height: 10),
-                      TextButton(
-                        onPressed: () {},
-                        child: const Text(
-                          'Forgot Password?',
-                          textAlign: TextAlign.center,
-                        ),
-                      ),
-                      const SizedBox(height: 10),
+                      const TextFormFieldPulse(
+                          hintText: 'Confirm Password', icon: Icon(Icons.lock)),
+                      const SizedBox(height: 37),
                       DocsUploadThemedButton(
                           onTap: () {},
-                          text: 'Login',
+                          text: 'Continue',
                           fontSize: 16,
                           height: 55,
                           showArrow: false,
