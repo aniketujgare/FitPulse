@@ -3,15 +3,18 @@ import 'package:flutter/material.dart';
 class TextFormFieldPulse extends StatelessWidget {
   final String hintText;
   final Widget icon;
+  final TextEditingController textFieldController;
   const TextFormFieldPulse({
     super.key,
     required this.hintText,
     required this.icon,
+    required this.textFieldController,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller: textFieldController,
       textAlign: TextAlign.start,
       decoration: InputDecoration(
         prefixIcon: icon,
