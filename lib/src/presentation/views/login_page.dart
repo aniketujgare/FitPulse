@@ -66,14 +66,31 @@ class _LoginPageState extends State<LoginPage> {
                           icon: const Icon(Icons.lock),
                           textFieldController: passwordController),
                       const SizedBox(height: 10),
-                      TextButton(
-                        onPressed: () {
-                          context.read<AuthBloc>().emit(ForgotPasswordState());
-                        },
-                        child: const Text(
-                          'Forgot Password?',
-                          style: TextStyle(color: Colors.black),
-                        ),
+                      Row(
+                        children: [
+                          TextButton(
+                            onPressed: () {
+                              context
+                                  .read<AuthBloc>()
+                                  .emit(ForgotPasswordState());
+                            },
+                            child: const Text(
+                              'Forgot Password?',
+                              style: TextStyle(color: Colors.black),
+                            ),
+                          ),
+                          TextButton(
+                            onPressed: () {
+                              context
+                                  .read<AuthBloc>()
+                                  .add(CreateAccountEvent());
+                            },
+                            child: const Text(
+                              'Create Account',
+                              style: TextStyle(color: Colors.black),
+                            ),
+                          ),
+                        ],
                       ),
                       const SizedBox(height: 10),
                       FitPulseButton(

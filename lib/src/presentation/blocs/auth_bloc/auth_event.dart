@@ -16,6 +16,10 @@ class UnautheticatedEvent extends AuthEvent {}
 
 class LogOutEvent extends AuthEvent {}
 
+class CreateAccountEvent extends AuthEvent {}
+
+class AuthErrorEvent extends AuthEvent {}
+
 class DispatchCreateAccountEvent extends AuthEvent {
   final String email;
   final String password;

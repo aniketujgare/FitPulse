@@ -20,3 +20,7 @@ class AuthUnauthenticated extends AuthState {}
 class AuthLoadingState extends AuthState {}
 
 class ForgotPasswordState extends AuthState {}
+
+class CreateAccountPageState extends AuthState {}
+
+class ErrorPageState extends AuthState {}

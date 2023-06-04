@@ -35,19 +35,32 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       emit(AuthLoadingState());
       var user = await authRepository.signUp(
           email: event.email, password: event.password);
-      if (user == null) {
-        emit(AuthAuthenticated(user: user!));
+      if (user != null) {
+        emit(AuthAuthenticated(user: user));
       } else {
         //error to create account state
+        emit(ErrorPageState());
       }
     });
     on<DispatchLoginAccountEvent>((event, emit) async {
       emit(AuthLoadingState());
-      var user = await authRepository.login(
-          email: event.email, password: event.password);
-      emit(AuthAuthenticated(user: user));
+      try {
+        var user = await authRepository.login(
+            email: event.email, password: event.password);
+        emit(AuthAuthenticated(user: user));
+      } catch (e) {
+        emit(ErrorPageState());
+      }
     });
     on<DispatchResetAccountEvent>((event, emit) {
+      // authRepository.login(email: event.email, password: event.password);
+    });
+    on<CreateAccountEvent>((event, emit) {
+      emit(CreateAccountPageState());
+      // authRepository.login(email: event.email, password: event.password);
+    });
+    on<AuthErrorEvent>((event, emit) {
+      emit(ErrorPageState());
       // authRepository.login(email: event.email, password: event.password);
     });
   }
