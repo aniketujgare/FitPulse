@@ -29,7 +29,7 @@ class GoRout {
       ),
       GoRoute(
         name: GoRoutConstants.homeRoutName,
-        path: '/home',
+        path: '/',
         pageBuilder: (context, state) => const MaterialPage(
           child: HomePage(
             userEmail: 'aniket@go.com',
@@ -49,7 +49,7 @@ class GoRout {
       ),
       GoRoute(
         name: GoRoutConstants.completeProfileRoutName,
-        path: '/',
+        path: '/completeProfile',
         pageBuilder: (context, state) =>
             const MaterialPage(child: CompleteProfilePage()),
       ),
