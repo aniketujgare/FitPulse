@@ -1,3 +1,5 @@
+import 'package:fitpulse/const.dart';
+import 'package:fitpulse/src/presentation/widgets/home_page/point_widget.dart';
 import 'package:flutter/material.dart';
 
 class ExerciseElement extends StatelessWidget {
@@ -10,13 +12,7 @@ class ExerciseElement extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 18),
       child: Row(
         children: [
-          Container(
-            height: 20,
-            width: 8,
-            decoration: BoxDecoration(
-                color: color,
-                borderRadius: const BorderRadius.all(Radius.circular(15))),
-          ),
+          PointWidget(pointColor: color),
           const SizedBox(
             width: 15,
           ),
@@ -25,10 +21,7 @@ class ExerciseElement extends StatelessWidget {
             children: [
               Text(
                 'Push-Ups',
-                style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18),
+                style: textStyle,
               ),
               Text(
                 "Biceps, Triceps, Shoulders",

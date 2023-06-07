@@ -74,7 +74,14 @@ flutter:
           weight: 700
     - family: Outfit
       fonts:
-        - asset: fonts/Outfit-Regular.ttf
+        - asset: fonts/Outfit/Outfit-Regular.ttf
+          weight: 300
+        - asset: fonts/Outfit/Outfit-Medium.ttf
+          weight: 400
+        - asset: fonts/Outfit/Outfit-SemiBold.ttf
+          weight: 500
+        - asset: fonts/Outfit/Outfit-Bold.ttf
+          weight: 600
     - family: Oswald
       fonts:
         - asset: fonts/Oswald/Oswald-Bold.ttf

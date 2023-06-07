@@ -1,6 +1,9 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '../../../../const.dart';
 import 'exercise_element.dart';
 
 class ExerciseCard extends StatelessWidget {
@@ -12,13 +15,6 @@ class ExerciseCard extends StatelessWidget {
 
   final double screenHeight;
   final double screenWidth;
-
-  final List<Color> colors = [
-    const Color(0xffEA7E43),
-    const Color(0xff12B3A8),
-    const Color(0xff79A6EF),
-    const Color(0xffA087D3)
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -56,13 +52,14 @@ class ExerciseCard extends StatelessWidget {
               ),
             ),
             Positioned(
-                bottom: 65,
+                bottom: 50,
                 left: 23,
                 child: RotatedBox(
                   quarterTurns: 3,
                   child: Text(
-                    'CHEST',
+                    '#CHEST_DAY',
                     style: TextStyle(
+                        fontFamily: 'Oswald',
                         fontWeight: FontWeight.bold,
                         fontSize: 22,
                         color: Colors.white.withOpacity(0.15)),
@@ -80,9 +77,11 @@ class ExerciseCard extends StatelessWidget {
           child: ListView.builder(
               itemCount: 4,
               itemBuilder: (context, index) {
-                final color = colors[index];
+                final random = Random();
+                final pointColor =
+                    backColors[random.nextInt(backColors.length)];
                 return ExerciseElement(
-                  color: color,
+                  color: pointColor,
                 );
               }),
         ),
