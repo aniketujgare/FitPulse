@@ -7,7 +7,7 @@ import '../../../../const.dart';
 import 'exercise_element.dart';
 
 class ExerciseCard extends StatelessWidget {
-  ExerciseCard({
+  const ExerciseCard({
     super.key,
     required this.screenHeight,
     required this.screenWidth,
@@ -23,7 +23,7 @@ class ExerciseCard extends StatelessWidget {
         Stack(
           children: [
             Container(
-              height: screenHeight * 0.35,
+              height: screenHeight * 0.38,
               width: screenWidth * 0.19,
               decoration: const BoxDecoration(
                   gradient: LinearGradient(
@@ -42,7 +42,7 @@ class ExerciseCard extends StatelessWidget {
               ),
             ),
             Positioned(
-              top: 40,
+              top: 50,
               left: 20,
               child: SvgPicture.asset(
                 'assets/svg/workout.svg',
@@ -69,7 +69,7 @@ class ExerciseCard extends StatelessWidget {
         ),
         const Spacer(),
         Container(
-          height: screenHeight * 0.35,
+          height: screenHeight * 0.38,
           width: screenWidth * 0.7,
           decoration: const BoxDecoration(
               color: Colors.white,

@@ -16,13 +16,18 @@ class HomeHeader extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text(
-              'Welcome Back!',
-              style: TextStyle(fontSize: 16, color: Color(0xff767A7D)),
+              'Howdy!',
+              style: TextStyle(
+                  fontSize: 18,
+                  color: Color(0xff767A7D),
+                  fontFamily: 'Outfit',
+                  fontWeight: FontWeight.w500),
             ),
             Text(userEmail,
                 style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 22,
+                    fontWeight: FontWeight.w500,
+                    fontFamily: 'Outfit',
+                    fontSize: 24,
                     color: Colors.black)),
           ],
         ),

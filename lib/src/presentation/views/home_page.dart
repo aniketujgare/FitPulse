@@ -29,8 +29,9 @@ class HomePage extends StatelessWidget {
                   "Today's Exercise",
                   style: TextStyle(
                       color: Colors.black,
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold),
+                      fontSize: 25,
+                      fontFamily: 'Outfit',
+                      fontWeight: FontWeight.w500),
                 ),
                 const SizedBox(
                   height: 15,
@@ -46,8 +47,9 @@ class HomePage extends StatelessWidget {
                   "Today's Status",
                   style: TextStyle(
                       color: Colors.black,
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold),
+                      fontSize: 25,
+                      fontFamily: 'Outfit',
+                      fontWeight: FontWeight.w500),
                 ),
                 const SizedBox(
                   height: 15,

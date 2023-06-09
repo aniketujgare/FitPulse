@@ -9,7 +9,7 @@ class ExerciseElement extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 18),
+      padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 22),
       child: Row(
         children: [
           PointWidget(pointColor: color),

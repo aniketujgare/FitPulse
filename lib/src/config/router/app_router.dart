@@ -35,7 +35,7 @@ class GoRout {
       ),
       GoRoute(
         name: GoRoutConstants.homeRoutName,
-        path: '/home',
+        path: '/',
         pageBuilder: (context, state) => const MaterialPage(
           child: HomePage(
             userEmail: 'aniket@go.com',
@@ -91,7 +91,7 @@ class GoRout {
       ),
       GoRoute(
         name: GoRoutConstants.updateProfileRoutName,
-        path: '/',
+        path: '/updateProfile',
         pageBuilder: (context, state) =>
             const MaterialPage(child: UpdateProfilePage()),
       ),
