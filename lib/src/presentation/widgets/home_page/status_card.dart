@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 class StatusCard extends StatelessWidget {
   const StatusCard({
     super.key,
-    required this.screenHeight,
     required this.screenWidth,
     required this.title,
     required this.primaryColor,
@@ -13,7 +12,6 @@ class StatusCard extends StatelessWidget {
     required this.measure,
   });
 
-  final double screenHeight;
   final double screenWidth;
   final String title;
   final Color primaryColor;
@@ -25,29 +23,23 @@ class StatusCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: screenHeight * 0.18,
-      width: screenWidth * 0.43,
+      // height: screenHeight * 0.18,
+      width: screenWidth * 0.9,
+      padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 25),
       decoration: BoxDecoration(
           color: cardBackgroundColor,
           borderRadius: const BorderRadius.all(Radius.circular(15))),
-      child: Stack(children: [
-        Positioned(
-            top: 15,
-            left: 15,
-            child: StatusCardHeader(
-              title: title,
-              pointColor: primaryColor,
-            )),
-        Positioned(
-            top: 25,
-            left: 15,
-            right: 20,
-            child: StatusCardData(
-              cardValue: cardValue,
-              statusCardColor: primaryColor,
-              icon: icon,
-              measure: measure,
-            ))
+      child: Column(children: [
+        StatusCardHeader(
+          title: title,
+          pointColor: primaryColor,
+        ),
+        StatusCardData(
+          cardValue: cardValue,
+          statusCardColor: primaryColor,
+          icon: icon,
+          measure: measure,
+        )
       ]),
     );
   }
@@ -69,12 +61,12 @@ class StatusCardData extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         Text(
           cardValue,
           style: TextStyle(
-              fontSize: 100,
+              fontSize: 145,
               fontFamily: 'Oswald',
               fontWeight: FontWeight.bold,
               color: statusCardColor),
@@ -85,7 +77,8 @@ class StatusCardData extends StatelessWidget {
             Text(
               measure,
               style: TextStyle(
-                  fontSize: 22,
+                  fontSize: 38,
+                  fontFamily: 'Outfit',
                   fontWeight: FontWeight.bold,
                   color: statusCardColor),
             ),
@@ -93,12 +86,12 @@ class StatusCardData extends StatelessWidget {
               height: 8,
             ),
             Container(
-              height: 50,
-              width: 50,
+              height: 80,
+              width: 80,
               decoration: BoxDecoration(
                   color: statusCardColor,
                   borderRadius: const BorderRadius.all(Radius.circular(12))),
-              child: Icon(icon, size: 40),
+              child: Icon(icon, size: 65),
             )
           ],
         )
@@ -133,7 +126,10 @@ class StatusCardHeader extends StatelessWidget {
         Text(
           title,
           style: const TextStyle(
-              color: Colors.black, fontSize: 18, fontWeight: FontWeight.bold),
+              fontFamily: 'Outfit',
+              color: Colors.black,
+              fontSize: 22,
+              fontWeight: FontWeight.w600),
         )
       ],
     );

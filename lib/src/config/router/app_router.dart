@@ -12,6 +12,7 @@ import 'package:go_router/go_router.dart';
 import '../../presentation/blocs/auth_bloc/auth_bloc.dart';
 import '../../presentation/views/home_page.dart';
 import '../../presentation/views/login_page.dart';
+import '../../presentation/views/report_screen.dart';
 
 class GoRout {
   GoRouter router = GoRouter(
@@ -70,9 +71,15 @@ class GoRout {
       ),
       GoRoute(
         name: GoRoutConstants.exercisedetailsRoutName,
-        path: '/',
+        path: '/exerciseDetails',
         pageBuilder: (context, state) =>
             const MaterialPage(child: ExerciseDetailsPage()),
+      ),
+      GoRoute(
+        name: GoRoutConstants.reportRoutName,
+        path: '/',
+        pageBuilder: (context, state) =>
+            const MaterialPage(child: ReportPage()),
       ),
     ],
   );
