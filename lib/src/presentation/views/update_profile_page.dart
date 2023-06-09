@@ -1,12 +1,12 @@
+import 'package:fitpulse/const.dart';
 import 'package:fitpulse/src/presentation/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../../../const.dart';
 import '../widgets/text_formfield_fit_pulse.dart';
 
-class CompleteProfilePage extends StatelessWidget {
-  const CompleteProfilePage({super.key});
+class UpdateProfilePage extends StatelessWidget {
+  const UpdateProfilePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,7 @@ class CompleteProfilePage extends StatelessWidget {
         leading: const Icon(Icons.arrow_back_rounded, color: Colors.black),
         backgroundColor: Colors.transparent,
         title: Text(
-          'Complete Profile',
+          'Update Profile',
           style: textStyle.copyWith(fontSize: 24),
         ),
       ),

@@ -8,4 +8,6 @@ class GoRoutConstants {
   static const String exercisesRoutName = 'exercises';
   static const String exercisedetailsRoutName = 'exercisesDetails';
   static const String reportRoutName = 'report';
+  static const String profileRoutName = 'profile';
+  static const String updateProfileRoutName = 'updateProfile';
 }
