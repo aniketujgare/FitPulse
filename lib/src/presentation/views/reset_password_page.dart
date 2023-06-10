@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 
 import '../blocs/auth_bloc/auth_bloc.dart';
 import '../widgets/text_formfield_fit_pulse.dart';
+import 'package:appwrite/appwrite.dart';
 
 class ResetPasswordPage extends StatefulWidget {
   const ResetPasswordPage({super.key});
@@ -60,13 +61,13 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                         icon: const Icon(Icons.alternate_email),
                         textFieldController: emailController,
                       ),
-                      const SizedBox(height: 37),
+                      TextButton(
+                          onPressed: () => BlocProvider.of<AuthBloc>(context)
+                              .add(AuthInitializeEvent()),
+                          child: Text('Back')),
+                      const SizedBox(height: 10),
                       FitPulseButton(
-                          onTap: () {
-                            context
-                                .read<AuthBloc>()
-                                .emit(AuthUnauthenticated());
-                          },
+                          onTap: onResetButtonPressed,
                           text: 'Continue',
                           fontSize: 16,
                           height: 55,

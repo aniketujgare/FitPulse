@@ -62,4 +62,17 @@ class AuthRepository {
   Future<void> logout() {
     return account.deleteSession(sessionId: 'current');
   }
+
+  resetPasswoord() async {
+    Future result = account.createRecovery(
+      email: 'aniketujgare@gmail.com',
+      url: 'https://cloud.appwrite.io',
+    );
+
+    result.then((response) {
+      print(response);
+    }).catchError((error) {
+      print(error.response);
+    });
+  }
 }

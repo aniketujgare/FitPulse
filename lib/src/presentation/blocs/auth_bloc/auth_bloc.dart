@@ -53,6 +53,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       }
     });
     on<DispatchResetAccountEvent>((event, emit) {
+      authRepository.resetPasswoord();
       // authRepository.login(email: event.email, password: event.password);
     });
     on<CreateAccountEvent>((event, emit) {
