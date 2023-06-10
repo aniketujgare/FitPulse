@@ -1,10 +1,23 @@
+import 'package:fitpulse/src/config/router/app_router_constants.dart';
 import 'package:fitpulse/src/presentation/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
+import '../blocs/auth_bloc/auth_bloc.dart';
 import '../widgets/text_formfield_fit_pulse.dart';
+import 'package:appwrite/appwrite.dart';
 
-class ResetPasswordPage extends StatelessWidget {
+class ResetPasswordPage extends StatefulWidget {
   const ResetPasswordPage({super.key});
+
+  @override
+  State<ResetPasswordPage> createState() => _ResetPasswordPageState();
+}
+
+class _ResetPasswordPageState extends State<ResetPasswordPage> {
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -43,11 +56,18 @@ class ResetPasswordPage extends StatelessWidget {
                             color: Colors.black),
                       ),
                       const SizedBox(height: 37),
-                      const TextFormFieldPulse(
-                          hintText: 'Email', icon: Icon(Icons.alternate_email)),
-                      const SizedBox(height: 37),
-                      DocsUploadThemedButton(
-                          onTap: () {},
+                      TextFormFieldPulse(
+                        hintText: 'Email',
+                        icon: const Icon(Icons.alternate_email),
+                        textFieldController: emailController,
+                      ),
+                      TextButton(
+                          onPressed: () => BlocProvider.of<AuthBloc>(context)
+                              .add(AuthInitializeEvent()),
+                          child: Text('Back')),
+                      const SizedBox(height: 10),
+                      FitPulseButton(
+                          onTap: onResetButtonPressed,
                           text: 'Continue',
                           fontSize: 16,
                           height: 55,
@@ -89,5 +109,11 @@ class ResetPasswordPage extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  onResetButtonPressed() {
+    print(emailController.text + passwordController.text);
+    BlocProvider.of<AuthBloc>(context).add(DispatchResetAccountEvent(
+        email: emailController.text, password: passwordController.text));
   }
 }

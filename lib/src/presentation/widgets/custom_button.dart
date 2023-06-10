@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class DocsUploadThemedButton extends StatelessWidget {
+class FitPulseButton extends StatelessWidget {
   final String text;
   final VoidCallback onTap;
   final Color bgColor, textColor;
@@ -8,7 +8,7 @@ class DocsUploadThemedButton extends StatelessWidget {
   final double height;
   final double fontSize;
   final bool showArrow, showUpload, border;
-  const DocsUploadThemedButton({
+  const FitPulseButton({
     super.key,
     required this.onTap,
     required this.text,

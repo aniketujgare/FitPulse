@@ -1,7 +1,15 @@
+<<<<<<< HEAD
 import 'package:flutter/material.dart';
 import '../widgets/home_page/exercise_card.dart';
 import '../widgets/home_page/home_header.dart';
 import '../widgets/home_page/status_card.dart';
+=======
+import 'package:fitpulse/src/config/router/app_router_constants.dart';
+import 'package:fitpulse/src/presentation/blocs/auth_bloc/auth_bloc.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+>>>>>>> aniket
 
 class HomePage extends StatelessWidget {
   final String userEmail;
@@ -9,6 +17,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+<<<<<<< HEAD
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
 
@@ -78,6 +87,19 @@ class HomePage extends StatelessWidget {
               ],
             ),
           ),
+=======
+    return Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            const SizedBox(width: double.infinity),
+            Text('Home Page + $userEmail'),
+            FloatingActionButton(
+                onPressed: () => context.read<AuthBloc>().add(LogOutEvent()))
+          ],
+>>>>>>> aniket
         ),
       ),
     );

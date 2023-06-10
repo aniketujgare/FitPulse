@@ -1,6 +1,7 @@
 import 'package:appwrite/appwrite.dart';
 import 'package:appwrite/models.dart' as models;
 import 'package:appwrite/models.dart';
+import 'package:flutter/material.dart';
 
 import '../datasources/appwrite.dart';
 
@@ -22,15 +23,22 @@ class AuthRepository {
     return user;
   }
 
-  Future<models.User> signUp(
+  Future<models.User?> signUp(
       {String? name, required String email, required String password}) async {
-    await account.create(
-      userId: ID.unique(),
-      email: email,
-      password: password,
-      name: name,
-    );
-    return login(email: email, password: password);
+    try {
+      var result = await account.create(
+        userId: ID.unique(),
+        email: email,
+        password: password,
+        name: name,
+      );
+      if (result.status == true) {
+        return login(email: email, password: password);
+      }
+    } catch (error) {
+      print(error.toString());
+    }
+    return null;
   }
 
   Future<models.User> login(
@@ -41,8 +49,30 @@ class AuthRepository {
     );
     return account.get();
   }
+  // Future<models.User> resetPassword(
+  //     {required String email, required String password}) async {
+  //       await account.createRecovery(email: email, url: url)
+  //   await account.createEmailSession(
+  //     email: email,
+  //     password: password,
+  //   );
+  //   return account.get();
+  // }
 
   Future<void> logout() {
     return account.deleteSession(sessionId: 'current');
+  }
+
+  resetPasswoord() async {
+    Future result = account.createRecovery(
+      email: 'aniketujgare@gmail.com',
+      url: 'https://cloud.appwrite.io',
+    );
+
+    result.then((response) {
+      print(response);
+    }).catchError((error) {
+      print(error.response);
+    });
   }
 }

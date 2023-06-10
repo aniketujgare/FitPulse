@@ -1,10 +1,22 @@
+import 'package:fitpulse/src/config/router/app_router_constants.dart';
 import 'package:fitpulse/src/presentation/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
+import '../blocs/auth_bloc/auth_bloc.dart';
 import '../widgets/text_formfield_fit_pulse.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
+
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -44,22 +56,45 @@ class LoginPage extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(height: 37),
-                      const TextFormFieldPulse(
-                          hintText: 'Email', icon: Icon(Icons.alternate_email)),
+                      TextFormFieldPulse(
+                          hintText: 'Email',
+                          icon: const Icon(Icons.alternate_email),
+                          textFieldController: emailController),
                       const SizedBox(height: 10),
-                      const TextFormFieldPulse(
-                          hintText: 'Password', icon: Icon(Icons.lock)),
+                      TextFormFieldPulse(
+                          hintText: 'Password',
+                          icon: const Icon(Icons.lock),
+                          textFieldController: passwordController),
                       const SizedBox(height: 10),
-                      TextButton(
-                        onPressed: () {},
-                        child: const Text(
-                          'Forgot Password?',
-                          style: TextStyle(color: Colors.black),
-                        ),
+                      Row(
+                        children: [
+                          TextButton(
+                            onPressed: () {
+                              context
+                                  .read<AuthBloc>()
+                                  .emit(ForgotPasswordState());
+                            },
+                            child: const Text(
+                              'Forgot Password?',
+                              style: TextStyle(color: Colors.black),
+                            ),
+                          ),
+                          TextButton(
+                            onPressed: () {
+                              context
+                                  .read<AuthBloc>()
+                                  .add(CreateAccountEvent());
+                            },
+                            child: const Text(
+                              'Create Account',
+                              style: TextStyle(color: Colors.black),
+                            ),
+                          ),
+                        ],
                       ),
                       const SizedBox(height: 10),
-                      DocsUploadThemedButton(
-                          onTap: () {},
+                      FitPulseButton(
+                          onTap: onLoginButtonPressed,
                           text: 'Login',
                           fontSize: 16,
                           height: 55,
@@ -101,5 +136,11 @@ class LoginPage extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  onLoginButtonPressed() {
+    print(emailController.text + passwordController.text);
+    BlocProvider.of<AuthBloc>(context).add(DispatchLoginAccountEvent(
+        email: emailController.text, password: passwordController.text));
   }
 }

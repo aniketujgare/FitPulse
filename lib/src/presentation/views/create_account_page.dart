@@ -1,11 +1,21 @@
+import 'package:fitpulse/src/presentation/blocs/auth_bloc/auth_bloc.dart';
 import 'package:fitpulse/src/presentation/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../widgets/text_formfield_fit_pulse.dart';
 
-class CreateAccountPage extends StatelessWidget {
+class CreateAccountPage extends StatefulWidget {
   const CreateAccountPage({super.key});
 
+  @override
+  State<CreateAccountPage> createState() => _CreateAccountPageState();
+}
+
+class _CreateAccountPageState extends State<CreateAccountPage> {
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  final confirmPasswordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,17 +53,23 @@ class CreateAccountPage extends StatelessWidget {
                             color: Colors.black),
                       ),
                       const SizedBox(height: 37),
-                      const TextFormFieldPulse(
-                          hintText: 'Email', icon: Icon(Icons.alternate_email)),
+                      TextFormFieldPulse(
+                          hintText: 'Email',
+                          icon: const Icon(Icons.alternate_email),
+                          textFieldController: emailController),
                       const SizedBox(height: 10),
-                      const TextFormFieldPulse(
-                          hintText: 'Password', icon: Icon(Icons.lock)),
+                      TextFormFieldPulse(
+                          hintText: 'Password',
+                          icon: const Icon(Icons.lock),
+                          textFieldController: passwordController),
                       const SizedBox(height: 10),
-                      const TextFormFieldPulse(
-                          hintText: 'Confirm Password', icon: Icon(Icons.lock)),
+                      TextFormFieldPulse(
+                          hintText: 'Confirm Password',
+                          icon: const Icon(Icons.lock),
+                          textFieldController: confirmPasswordController),
                       const SizedBox(height: 37),
-                      DocsUploadThemedButton(
-                          onTap: () {},
+                      FitPulseButton(
+                          onTap: onCreateUserButtonPressed,
                           text: 'Continue',
                           fontSize: 16,
                           height: 55,
@@ -95,5 +111,11 @@ class CreateAccountPage extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  onCreateUserButtonPressed() {
+    print(emailController.text + passwordController.text);
+    BlocProvider.of<AuthBloc>(context).add(DispatchCreateAccountEvent(
+        email: emailController.text, password: passwordController.text));
   }
 }
