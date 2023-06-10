@@ -1,3 +1,4 @@
+import 'package:fitpulse/src/presentation/widgets/home_page/card_curve.dart';
 import 'package:fitpulse/src/presentation/widgets/workout_page/workout_card_element.dart';
 import 'package:flutter/material.dart';
 
@@ -33,6 +34,11 @@ class WorkoutCard extends StatelessWidget {
             borderRadius: const BorderRadius.all(Radius.circular(18))),
         child: Stack(
           children: [
+            Positioned(
+                left: 0,
+                bottom: -30,
+                child: CardCurve(
+                    screenHeight: screenHeight, screenWidth: screenWidth)),
             WorkoutCardElement(
               workout: workout,
               iconBackColor: iconBackColor,

@@ -1,3 +1,4 @@
+import 'package:fitpulse/src/presentation/widgets/home_page/card_curve.dart';
 import 'package:fitpulse/src/presentation/widgets/report_page/report_card_element.dart';
 import 'package:flutter/material.dart';
 
@@ -24,50 +25,64 @@ class ReportCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 20),
       decoration: BoxDecoration(
         color: backColor,
         borderRadius: const BorderRadius.all(Radius.circular(18)),
       ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      child: Stack(
         children: [
-          Row(
-            children: [
-              const SizedBox(
-                width: 25,
-              ),
-              PointWidget(pointColor: pointColor),
-              const SizedBox(
-                width: 20,
-              ),
-              Text(
-                title,
-                style: textStyle.copyWith(color: Colors.white, fontSize: 22),
-              )
-            ],
-          ),
-          Visibility(
-            visible: isValueShown == false,
-            child: const SizedBox(
-              height: 20,
-            ),
-          ),
           Visibility(
             visible: isValueShown,
-            child: Text(
-              value,
-              style: const TextStyle(
-                  color: Color(0xff24786B),
-                  fontFamily: 'Oswald',
-                  fontSize: 110,
-                  fontWeight: FontWeight.bold),
-            ),
+            child: Positioned(
+                bottom: 0,
+                child: CardCurve(
+                    screenHeight: screenHeight, screenWidth: screenWidth)),
           ),
-          Row(
+          Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: elements,
+            children: [
+              Row(
+                children: [
+                  const SizedBox(
+                    width: 25,
+                  ),
+                  PointWidget(pointColor: pointColor),
+                  const SizedBox(
+                    width: 20,
+                  ),
+                  Text(
+                    title,
+                    style:
+                        textStyle.copyWith(color: Colors.white, fontSize: 22),
+                  )
+                ],
+              ),
+              Visibility(
+                visible: isValueShown == false,
+                child: const SizedBox(
+                  height: 20,
+                ),
+              ),
+              Visibility(
+                visible: isValueShown,
+                child: Text(
+                  value,
+                  style: const TextStyle(
+                      color: Color(0xff24786B),
+                      fontFamily: 'Oswald',
+                      fontSize: 110,
+                      fontWeight: FontWeight.bold),
+                ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: elements,
+              ),
+            ],
           ),
         ],
       ),

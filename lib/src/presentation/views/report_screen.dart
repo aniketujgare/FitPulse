@@ -10,6 +10,7 @@ class ReportPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
 
     return SafeArea(
         child: Scaffold(
@@ -50,6 +51,7 @@ class ReportPage extends StatelessWidget {
                 height: 20,
               ),
               StatusCard(
+                screenHeight: screenHeight,
                 screenWidth: screenWidth,
                 title: 'Calories Loss',
                 primaryColor: const Color(0xffEA7E43),
@@ -63,6 +65,7 @@ class ReportPage extends StatelessWidget {
               ),
               StatusCard(
                 screenWidth: screenWidth,
+                screenHeight: screenHeight,
                 title: 'Weight Loss',
                 primaryColor: const Color(0xffA087D3),
                 cardBackgroundColor: const Color(0xffE0D2FD),
