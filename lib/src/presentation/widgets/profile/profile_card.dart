@@ -21,7 +21,8 @@ class ProfileCard extends StatelessWidget {
         ListTile(
           leading: SvgPicture.asset(
             iconPath,
-            color: const Color(0xff74777D),
+            colorFilter:
+                const ColorFilter.mode(Color(0xff74777D), BlendMode.srcIn),
             width: 28,
             height: 26,
           ),

@@ -44,12 +44,11 @@ class ExerciseCard extends StatelessWidget {
             Positioned(
               top: 50,
               left: 20,
-              child: SvgPicture.asset(
-                'assets/svg/workout.svg',
-                height: 40,
-                width: 40,
-                color: Colors.white,
-              ),
+              child: SvgPicture.asset('assets/svg/workout.svg',
+                  height: 40,
+                  width: 40,
+                  colorFilter:
+                      const ColorFilter.mode(Colors.white, BlendMode.srcIn)),
             ),
             Positioned(
                 bottom: 50,

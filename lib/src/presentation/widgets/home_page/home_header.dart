@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../blocs/auth_bloc/auth_bloc.dart';
 
 class HomeHeader extends StatelessWidget {
   const HomeHeader({
     super.key,
-    required this.userEmail,
   });
-
-  final String userEmail;
 
   @override
   Widget build(BuildContext context) {
@@ -23,12 +23,20 @@ class HomeHeader extends StatelessWidget {
                   fontFamily: 'Outfit',
                   fontWeight: FontWeight.w500),
             ),
-            Text(userEmail,
-                style: const TextStyle(
-                    fontWeight: FontWeight.w500,
-                    fontFamily: 'Outfit',
-                    fontSize: 24,
-                    color: Colors.black)),
+            BlocBuilder<AuthBloc, AuthState>(
+              builder: (context, state) {
+                if (state is AuthAuthenticated) {
+                  return Text(state.user.name,
+                      style: const TextStyle(
+                          fontWeight: FontWeight.w500,
+                          fontFamily: 'Outfit',
+                          fontSize: 24,
+                          color: Colors.black));
+                } else {
+                  return const Text('');
+                }
+              },
+            ),
           ],
         ),
         const Spacer(),

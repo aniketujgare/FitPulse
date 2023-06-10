@@ -1,10 +1,8 @@
-import 'package:appwrite/appwrite.dart';
 import 'package:appwrite/models.dart';
 import 'package:equatable/equatable.dart';
-import 'package:fitpulse/src/data/datasources/appwrite.dart';
-import 'package:fitpulse/src/data/repositories/auth_repository.dart';
-import 'package:fitpulse/src/presentation/views/create_account_page.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../data/repositories/auth_repository.dart';
 
 part 'auth_event.dart';
 part 'auth_state.dart';

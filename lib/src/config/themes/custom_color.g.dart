@@ -1,11 +1,9 @@
-import 'package:dynamic_color/dynamic_color.dart';
 import 'package:flutter/material.dart';
 
 const customcolor1 = Color(0xFFE97E43);
 const customcolor2 = Color(0xFF79A6EF);
 const customcolor3 = Color(0xFFF3E030);
 const customcolor4 = Color(0xFFAF332C);
-
 
 CustomColors lightCustomColors = const CustomColors(
   sourceCustomcolor1: Color(0xFFE97E43),
@@ -52,8 +50,6 @@ CustomColors darkCustomColors = const CustomColors(
   customcolor4Container: Color(0xFF8B1816),
   onCustomcolor4Container: Color(0xFFFFDAD6),
 );
-
-
 
 /// Defines a set of custom colors, each comprised of 4 complementary tones.
 ///
@@ -132,23 +128,31 @@ class CustomColors extends ThemeExtension<CustomColors> {
       sourceCustomcolor1: sourceCustomcolor1 ?? this.sourceCustomcolor1,
       customcolor1: customcolor1 ?? this.customcolor1,
       onCustomcolor1: onCustomcolor1 ?? this.onCustomcolor1,
-      customcolor1Container: customcolor1Container ?? this.customcolor1Container,
-      onCustomcolor1Container: onCustomcolor1Container ?? this.onCustomcolor1Container,
+      customcolor1Container:
+          customcolor1Container ?? this.customcolor1Container,
+      onCustomcolor1Container:
+          onCustomcolor1Container ?? this.onCustomcolor1Container,
       sourceCustomcolor2: sourceCustomcolor2 ?? this.sourceCustomcolor2,
       customcolor2: customcolor2 ?? this.customcolor2,
       onCustomcolor2: onCustomcolor2 ?? this.onCustomcolor2,
-      customcolor2Container: customcolor2Container ?? this.customcolor2Container,
-      onCustomcolor2Container: onCustomcolor2Container ?? this.onCustomcolor2Container,
+      customcolor2Container:
+          customcolor2Container ?? this.customcolor2Container,
+      onCustomcolor2Container:
+          onCustomcolor2Container ?? this.onCustomcolor2Container,
       sourceCustomcolor3: sourceCustomcolor3 ?? this.sourceCustomcolor3,
       customcolor3: customcolor3 ?? this.customcolor3,
       onCustomcolor3: onCustomcolor3 ?? this.onCustomcolor3,
-      customcolor3Container: customcolor3Container ?? this.customcolor3Container,
-      onCustomcolor3Container: onCustomcolor3Container ?? this.onCustomcolor3Container,
+      customcolor3Container:
+          customcolor3Container ?? this.customcolor3Container,
+      onCustomcolor3Container:
+          onCustomcolor3Container ?? this.onCustomcolor3Container,
       sourceCustomcolor4: sourceCustomcolor4 ?? this.sourceCustomcolor4,
       customcolor4: customcolor4 ?? this.customcolor4,
       onCustomcolor4: onCustomcolor4 ?? this.onCustomcolor4,
-      customcolor4Container: customcolor4Container ?? this.customcolor4Container,
-      onCustomcolor4Container: onCustomcolor4Container ?? this.onCustomcolor4Container,
+      customcolor4Container:
+          customcolor4Container ?? this.customcolor4Container,
+      onCustomcolor4Container:
+          onCustomcolor4Container ?? this.onCustomcolor4Container,
     );
   }
 
@@ -158,26 +162,38 @@ class CustomColors extends ThemeExtension<CustomColors> {
       return this;
     }
     return CustomColors(
-      sourceCustomcolor1: Color.lerp(sourceCustomcolor1, other.sourceCustomcolor1, t),
+      sourceCustomcolor1:
+          Color.lerp(sourceCustomcolor1, other.sourceCustomcolor1, t),
       customcolor1: Color.lerp(customcolor1, other.customcolor1, t),
       onCustomcolor1: Color.lerp(onCustomcolor1, other.onCustomcolor1, t),
-      customcolor1Container: Color.lerp(customcolor1Container, other.customcolor1Container, t),
-      onCustomcolor1Container: Color.lerp(onCustomcolor1Container, other.onCustomcolor1Container, t),
-      sourceCustomcolor2: Color.lerp(sourceCustomcolor2, other.sourceCustomcolor2, t),
+      customcolor1Container:
+          Color.lerp(customcolor1Container, other.customcolor1Container, t),
+      onCustomcolor1Container:
+          Color.lerp(onCustomcolor1Container, other.onCustomcolor1Container, t),
+      sourceCustomcolor2:
+          Color.lerp(sourceCustomcolor2, other.sourceCustomcolor2, t),
       customcolor2: Color.lerp(customcolor2, other.customcolor2, t),
       onCustomcolor2: Color.lerp(onCustomcolor2, other.onCustomcolor2, t),
-      customcolor2Container: Color.lerp(customcolor2Container, other.customcolor2Container, t),
-      onCustomcolor2Container: Color.lerp(onCustomcolor2Container, other.onCustomcolor2Container, t),
-      sourceCustomcolor3: Color.lerp(sourceCustomcolor3, other.sourceCustomcolor3, t),
+      customcolor2Container:
+          Color.lerp(customcolor2Container, other.customcolor2Container, t),
+      onCustomcolor2Container:
+          Color.lerp(onCustomcolor2Container, other.onCustomcolor2Container, t),
+      sourceCustomcolor3:
+          Color.lerp(sourceCustomcolor3, other.sourceCustomcolor3, t),
       customcolor3: Color.lerp(customcolor3, other.customcolor3, t),
       onCustomcolor3: Color.lerp(onCustomcolor3, other.onCustomcolor3, t),
-      customcolor3Container: Color.lerp(customcolor3Container, other.customcolor3Container, t),
-      onCustomcolor3Container: Color.lerp(onCustomcolor3Container, other.onCustomcolor3Container, t),
-      sourceCustomcolor4: Color.lerp(sourceCustomcolor4, other.sourceCustomcolor4, t),
+      customcolor3Container:
+          Color.lerp(customcolor3Container, other.customcolor3Container, t),
+      onCustomcolor3Container:
+          Color.lerp(onCustomcolor3Container, other.onCustomcolor3Container, t),
+      sourceCustomcolor4:
+          Color.lerp(sourceCustomcolor4, other.sourceCustomcolor4, t),
       customcolor4: Color.lerp(customcolor4, other.customcolor4, t),
       onCustomcolor4: Color.lerp(onCustomcolor4, other.onCustomcolor4, t),
-      customcolor4Container: Color.lerp(customcolor4Container, other.customcolor4Container, t),
-      onCustomcolor4Container: Color.lerp(onCustomcolor4Container, other.onCustomcolor4Container, t),
+      customcolor4Container:
+          Color.lerp(customcolor4Container, other.customcolor4Container, t),
+      onCustomcolor4Container:
+          Color.lerp(onCustomcolor4Container, other.onCustomcolor4Container, t),
     );
   }
 
@@ -187,7 +203,6 @@ class CustomColors extends ThemeExtension<CustomColors> {
   /// See also:
   ///   * <https://m3.material.io/styles/color/the-color-system/custom-colors#harmonization>
   CustomColors harmonized(ColorScheme dynamic) {
-    return copyWith(
-    );
+    return copyWith();
   }
 }

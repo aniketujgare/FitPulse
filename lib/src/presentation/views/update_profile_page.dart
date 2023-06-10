@@ -1,8 +1,7 @@
-import 'package:fitpulse/const.dart';
-import 'package:fitpulse/src/presentation/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../../../const.dart';
 import '../widgets/text_formfield_fit_pulse.dart';
 
 class UpdateProfilePage extends StatelessWidget {
@@ -71,47 +70,57 @@ class UpdateProfilePage extends StatelessWidget {
               const SizedBox(
                 height: 37,
               ),
-              const TextFormFieldPulse(
-                  hintText: 'Name', icon: Icon(Icons.person)),
+              TextFormFieldPulse(
+                  textFieldController: TextEditingController(),
+                  hintText: 'Name',
+                  icon: const Icon(Icons.person)),
               const SizedBox(
                 height: 15,
               ),
               TextFormFieldPulse(
+                textFieldController: TextEditingController(),
                 hintText: 'Age',
                 icon: SvgPicture.asset('assets/svg/age.svg',
-                    color: Color(0xffADB6C1)),
+                    colorFilter: const ColorFilter.mode(
+                        Color(0xffADB6C1), BlendMode.srcIn)),
               ),
               const SizedBox(
                 height: 15,
               ),
               TextFormFieldPulse(
+                textFieldController: TextEditingController(),
                 hintText: 'Gender',
                 icon: SvgPicture.asset('assets/svg/gender.svg',
-                    color: Color(0xffADB6C1)),
+                    colorFilter: const ColorFilter.mode(
+                        Color(0xffADB6C1), BlendMode.srcIn)),
               ),
-              const SizedBox(
-                height: 15,
-              ),
-              const TextFormFieldPulse(
-                  hintText: 'Weight', icon: Icon(Icons.monitor_weight)),
               const SizedBox(
                 height: 15,
               ),
               TextFormFieldPulse(
+                  textFieldController: TextEditingController(),
+                  hintText: 'Weight',
+                  icon: const Icon(Icons.monitor_weight)),
+              const SizedBox(
+                height: 15,
+              ),
+              TextFormFieldPulse(
+                textFieldController: TextEditingController(),
                 hintText: 'Height',
                 icon: SvgPicture.asset('assets/svg/height.svg',
-                    color: Color(0xffADB6C1)),
+                    colorFilter: const ColorFilter.mode(
+                        Color(0xffADB6C1), BlendMode.srcIn)),
               ),
               const SizedBox(
                 height: 37,
               ),
-              DocsUploadThemedButton(
-                  onTap: () {},
-                  text: 'Save',
-                  fontSize: 16,
-                  height: 55,
-                  showArrow: false,
-                  hMargin: 0),
+              // DocsUploadThemedButton(
+              //     onTap: () {},
+              //     text: 'Save',
+              //     fontSize: 16,
+              //     height: 55,
+              //     showArrow: false,
+              //     hMargin: 0),
               const SizedBox(height: 2),
             ],
           ),

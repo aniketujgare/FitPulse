@@ -77,7 +77,7 @@ class CompleteProfilePage extends StatelessWidget {
               ),
               TextFormFieldPulse(
                 hintText: 'Name',
-                icon: Icon(Icons.person),
+                icon: const Icon(Icons.person),
                 textFieldController: TextEditingController(),
               ),
               const SizedBox(
@@ -86,8 +86,11 @@ class CompleteProfilePage extends StatelessWidget {
               TextFormFieldPulse(
                 textFieldController: TextEditingController(),
                 hintText: 'Age',
-                icon: SvgPicture.asset('assets/svg/age.svg',
-                    color: Color(0xffADB6C1)),
+                icon: SvgPicture.asset(
+                  'assets/svg/age.svg',
+                  colorFilter: const ColorFilter.mode(
+                      Color(0xffADB6C1), BlendMode.srcIn),
+                ),
               ),
               const SizedBox(
                 height: 15,
@@ -96,7 +99,8 @@ class CompleteProfilePage extends StatelessWidget {
                 textFieldController: TextEditingController(),
                 hintText: 'Gender',
                 icon: SvgPicture.asset('assets/svg/gender.svg',
-                    color: Color(0xffADB6C1)),
+                    colorFilter: const ColorFilter.mode(
+                        Color(0xffADB6C1), BlendMode.srcIn)),
               ),
               const SizedBox(
                 height: 15,
@@ -104,7 +108,7 @@ class CompleteProfilePage extends StatelessWidget {
               TextFormFieldPulse(
                   textFieldController: TextEditingController(),
                   hintText: 'Weight',
-                  icon: Icon(Icons.monitor_weight)),
+                  icon: const Icon(Icons.monitor_weight)),
               const SizedBox(
                 height: 15,
               ),
@@ -112,7 +116,8 @@ class CompleteProfilePage extends StatelessWidget {
                 textFieldController: TextEditingController(),
                 hintText: 'Height',
                 icon: SvgPicture.asset('assets/svg/height.svg',
-                    color: Color(0xffADB6C1)),
+                    colorFilter: const ColorFilter.mode(
+                        Color(0xffADB6C1), BlendMode.srcIn)),
               ),
               const SizedBox(
                 height: 37,

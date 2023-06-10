@@ -1,22 +1,20 @@
-import 'package:fitpulse/src/config/router/app_router_constants.dart';
-import 'package:fitpulse/src/data/repositories/auth_repository.dart';
-import 'package:fitpulse/src/presentation/views/auth_flow.dart';
-import 'package:fitpulse/src/presentation/views/complete_profile_page.dart';
-import 'package:fitpulse/src/presentation/views/create_account_page.dart';
-import 'package:fitpulse/src/presentation/views/exercise_details_page.dart';
-import 'package:fitpulse/src/presentation/views/exercises_page.dart';
-import 'package:fitpulse/src/presentation/views/profile_page.dart';
-import 'package:fitpulse/src/presentation/views/reset_password_page.dart';
-import 'package:fitpulse/src/presentation/views/update_profile_page.dart';
-import 'package:fitpulse/src/presentation/views/workout_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../data/repositories/auth_repository.dart';
 import '../../presentation/blocs/auth_bloc/auth_bloc.dart';
+import '../../presentation/views/auth_flow.dart';
+import '../../presentation/views/exercise_details_page.dart';
+import '../../presentation/views/exercises_page.dart';
 import '../../presentation/views/home_page.dart';
 import '../../presentation/views/login_page.dart';
+import '../../presentation/views/profile_page.dart';
 import '../../presentation/views/report_screen.dart';
+import '../../presentation/views/reset_password_page.dart';
+import '../../presentation/views/update_profile_page.dart';
+import '../../presentation/views/workout_page.dart';
+import 'app_router_constants.dart';
 
 final authRepository = AuthRepository();
 
@@ -45,9 +43,7 @@ class GoRout {
         name: GoRoutConstants.homeRoutName,
         path: '/',
         pageBuilder: (context, state) => const MaterialPage(
-          child: HomePage(
-            userEmail: 'aniket@go.com',
-          ),
+          child: HomePage(),
         ),
       ),
       GoRoute(

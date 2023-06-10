@@ -1,12 +1,9 @@
-import 'package:fitpulse/src/config/router/app_router_constants.dart';
-import 'package:fitpulse/src/presentation/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 
 import '../blocs/auth_bloc/auth_bloc.dart';
+import '../widgets/custom_button.dart';
 import '../widgets/text_formfield_fit_pulse.dart';
-import 'package:appwrite/appwrite.dart';
 
 class ResetPasswordPage extends StatefulWidget {
   const ResetPasswordPage({super.key});
@@ -64,7 +61,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                       TextButton(
                           onPressed: () => BlocProvider.of<AuthBloc>(context)
                               .add(AuthInitializeEvent()),
-                          child: Text('Back')),
+                          child: const Text('Back')),
                       const SizedBox(height: 10),
                       FitPulseButton(
                           onTap: onResetButtonPressed,

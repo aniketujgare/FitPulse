@@ -1,7 +1,6 @@
 import 'package:appwrite/appwrite.dart';
 import 'package:appwrite/models.dart' as models;
 import 'package:appwrite/models.dart';
-import 'package:flutter/material.dart';
 
 import '../datasources/appwrite.dart';
 
@@ -14,6 +13,7 @@ class AuthRepository {
       // already logged it
       return true;
     } on AppwriteException catch (e) {
+      print(e);
       return false;
     }
   }

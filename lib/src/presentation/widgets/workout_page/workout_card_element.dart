@@ -46,7 +46,7 @@ class WorkoutCardElement extends StatelessWidget {
                   'assets/svg/workout.svg',
                   height: 30,
                   width: 30,
-                  color: iconColor,
+                  colorFilter: ColorFilter.mode(iconColor, BlendMode.srcIn),
                 ),
               ),
               const SizedBox(

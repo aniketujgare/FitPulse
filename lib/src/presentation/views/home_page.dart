@@ -1,23 +1,13 @@
-<<<<<<< HEAD
 import 'package:flutter/material.dart';
 import '../widgets/home_page/exercise_card.dart';
 import '../widgets/home_page/home_header.dart';
 import '../widgets/home_page/status_card.dart';
-=======
-import 'package:fitpulse/src/config/router/app_router_constants.dart';
-import 'package:fitpulse/src/presentation/blocs/auth_bloc/auth_bloc.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
->>>>>>> aniket
 
 class HomePage extends StatelessWidget {
-  final String userEmail;
-  const HomePage({super.key, required this.userEmail});
+  const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-<<<<<<< HEAD
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
 
@@ -30,7 +20,7 @@ class HomePage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                HomeHeader(userEmail: userEmail),
+                const HomeHeader(),
                 const SizedBox(
                   height: 30,
                 ),
@@ -83,72 +73,13 @@ class HomePage extends StatelessWidget {
                   cardValue: '12',
                   icon: Icons.monitor_weight_outlined,
                   measure: 'Kg',
-                )
+                ),
+                const SizedBox(height: 75),
               ],
             ),
           ),
-=======
-    return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            const SizedBox(width: double.infinity),
-            Text('Home Page + $userEmail'),
-            FloatingActionButton(
-                onPressed: () => context.read<AuthBloc>().add(LogOutEvent()))
-          ],
->>>>>>> aniket
         ),
       ),
     );
   }
 }
-
-
-
-
-
-// Stack(
-//   children: [
-//     Container(
-//       height: screenHeight * 0.1,
-//       width: screenWidth * 0.19,
-// color: Colors.green,
-//       decoration: const BoxDecoration(
-//           gradient: LinearGradient(
-//               begin: Alignment.topCenter,
-//               end: Alignment.bottomCenter,
-//               colors: [Colors.white, Color(0xffCE435D)]),
-//           borderRadius: BorderRadius.all(Radius.circular(15))),
-//     ),
-//     ClipPath(
-//       clipper: ProsteBezierCurve(
-//         position: ClipPosition.bottom,
-//         list: [
-//           BezierCurveSection(
-//             start: Offset(0, 120),
-//             top: Offset(100, 250),
-//             end: Offset(30, 100),
-//           ),
-//           BezierCurveSection(
-//             start: Offset(0, 100),
-//             top: Offset(60, 30),
-//             end: Offset(90, 60),
-//           ),
-//         ],
-//       ),
-//       child: Container(
-//         height: screenHeight * 0.1,
-//         width: screenWidth * 0.19,
-//         decoration: const BoxDecoration(
-//             gradient: LinearGradient(
-//                 colors: [Color(0xffC75469), Color(0xffCE435D)]),
-//             borderRadius: BorderRadius.all(Radius.circular(15))),
-//       ),
-//     ),
-//   ],
-// ),
-
-
