@@ -1,9 +1,11 @@
+import 'package:fitpulse/src/presentation/widgets/home_page/card_curve.dart';
 import 'package:flutter/material.dart';
 
 class StatusCard extends StatelessWidget {
   const StatusCard({
     super.key,
     required this.screenWidth,
+    required this.screenHeight,
     required this.title,
     required this.primaryColor,
     required this.cardBackgroundColor,
@@ -13,6 +15,7 @@ class StatusCard extends StatelessWidget {
   });
 
   final double screenWidth;
+  final double screenHeight;
   final String title;
   final Color primaryColor;
   final Color cardBackgroundColor;
@@ -23,22 +26,35 @@ class StatusCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      // height: screenHeight * 0.18,
+      height: screenHeight * 0.24,
       width: screenWidth * 0.9,
-      padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 25),
+      // padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 25),
       decoration: BoxDecoration(
           color: cardBackgroundColor,
           borderRadius: const BorderRadius.all(Radius.circular(15))),
-      child: Column(children: [
-        StatusCardHeader(
-          title: title,
-          pointColor: primaryColor,
+      child: Stack(children: [
+        Positioned(
+            bottom: 0,
+            left: 0,
+            child: CardCurve(
+                screenHeight: screenHeight, screenWidth: screenWidth)),
+        Positioned(
+          left: 15,
+          top: 12,
+          child: StatusCardHeader(
+            title: title,
+            pointColor: primaryColor,
+          ),
         ),
-        StatusCardData(
-          cardValue: cardValue,
-          statusCardColor: primaryColor,
-          icon: icon,
-          measure: measure,
+        Positioned(
+          bottom: 0,
+          left: 60,
+          child: StatusCardData(
+            cardValue: cardValue,
+            statusCardColor: primaryColor,
+            icon: icon,
+            measure: measure,
+          ),
         )
       ]),
     );
@@ -70,6 +86,9 @@ class StatusCardData extends StatelessWidget {
               fontFamily: 'Oswald',
               fontWeight: FontWeight.bold,
               color: statusCardColor),
+        ),
+        const SizedBox(
+          width: 60,
         ),
         Column(
           mainAxisAlignment: MainAxisAlignment.start,

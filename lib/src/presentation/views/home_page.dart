@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../widgets/home_page/card_curve.dart';
 import '../widgets/home_page/exercise_card.dart';
 import '../widgets/home_page/home_header.dart';
 import '../widgets/home_page/status_card.dart';
@@ -54,6 +55,7 @@ class HomePage extends StatelessWidget {
                   height: 15,
                 ),
                 StatusCard(
+                  screenHeight: screenHeight,
                   screenWidth: screenWidth,
                   title: 'Calories Loss',
                   primaryColor: const Color(0xffEA7E43),
@@ -66,6 +68,7 @@ class HomePage extends StatelessWidget {
                   height: 20,
                 ),
                 StatusCard(
+                  screenHeight: screenHeight,
                   screenWidth: screenWidth,
                   title: 'Weight Loss',
                   primaryColor: const Color(0xffA087D3),
@@ -74,7 +77,9 @@ class HomePage extends StatelessWidget {
                   icon: Icons.monitor_weight_outlined,
                   measure: 'Kg',
                 ),
-                const SizedBox(height: 75),
+                const SizedBox(
+                  height: 15,
+                ),
               ],
             ),
           ),
