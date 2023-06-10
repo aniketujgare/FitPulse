@@ -25,8 +25,8 @@ class CardCurve extends StatelessWidget {
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
                 colors: [
-                  Color(0xffFFFFFF).withOpacity(0.9),
-                  Color(0xffFFFFFF).withOpacity(0)
+                  const Color(0xffFFFFFF).withOpacity(0.9),
+                  const Color(0xffFFFFFF).withOpacity(0)
                 ]),
             borderRadius: const BorderRadius.all(Radius.circular(15))),
       ),

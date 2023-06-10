@@ -1,9 +1,7 @@
-import 'package:fitpulse/src/presentation/views/complete_profile_page.dart';
-import 'package:fitpulse/src/presentation/views/exercise_details_page.dart';
-import 'package:fitpulse/src/presentation/views/exercises_page.dart';
-import 'package:fitpulse/src/presentation/views/home_page.dart';
-import 'package:fitpulse/src/presentation/views/profile_page.dart';
-import 'package:fitpulse/src/presentation/views/report_screen.dart';
+import 'complete_profile_page.dart';
+import 'exercise_details_page.dart';
+import 'home_page.dart';
+import 'report_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show SystemUiOverlayStyle;
 import 'package:flutter_bloc/flutter_bloc.dart';

@@ -59,7 +59,7 @@ class GoRout {
       ),
       // GoRoute(
       //   name: GoRoutConstants.completeProfileRoutName,
-      //   path: '/completeProfile',
+      //   path: '/completeProfilecompleteProfile',
       //   pageBuilder: (context, state) =>
       //       const MaterialPage(child: CompleteProfilePage()),
       // ),
@@ -99,12 +99,6 @@ class GoRout {
         pageBuilder: (context, state) =>
             const MaterialPage(child: UpdateProfilePage()),
       ),
-      // GoRoute(
-      //   name: GoRoutConstants.completeProfileRoutName,
-      //   path: '/completeProfile',
-      //   pageBuilder: (context, state) =>
-      //       const MaterialPage(child: CompleteProfilePage()),
-      // ),
     ],
   );
 }
