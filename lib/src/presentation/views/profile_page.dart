@@ -24,36 +24,6 @@ class ProfilePage extends StatelessWidget {
             IconButton(
                 onPressed: () {
                   context.pushNamed(GoRoutConstants.completeProfileRoutName);
-                  // GoRout()
-                  //     .router
-                  //     .pushNamed(GoRoutConstants.completeProfileRoutName);
-                  // Client client = Client();
-                  // Databases databases = Databases(client);
-
-                  // client
-                  //         .setEndpoint(
-                  //             'https://cloud.appwrite.io/v1') // Your API Endpoint
-                  //         .setProject('64690d0eedba385967a1') // Your project ID
-                  //     ;
-
-                  // Future result1 = databases.createDocument(
-                  //   databaseId: '6484be018b503003ea70',
-                  //   collectionId: '6484be1836fe39cfbd9e',
-                  //   documentId: ID.unique(),
-                  //   data: {
-                  //     'name': 'aniket',
-                  //     'age': 23,
-                  //     'gender': 'Male',
-                  //     'weight': 52,
-                  //     'height': 174,
-                  //   },
-                  // );
-
-                  // result1.then((response) {
-                  //   print(response);
-                  // }).catchError((error) {
-                  //   print(error.response);
-                  // });
                 },
                 icon: const Icon(
                   Icons.border_color,
@@ -71,10 +41,25 @@ class ProfilePage extends StatelessWidget {
         ),
         body: SingleChildScrollView(
           child: Column(children: [
-            const CircleAvatar(
-              radius: 80,
-              backgroundImage: NetworkImage(
-                  'https://i.zoomtventertainment.com/89603916_860872437671675_8368801269262698689_n_1584347986__rend_9_16.jpg?tr=w-600'),
+            BlocBuilder<DatabaseBloc, DatabaseState>(
+              builder: (context, state) {
+                if (state is DatabaseCurrentUserState &&
+                    state.user.profilePic != '') {
+                  return CircleAvatar(
+                    radius: 80,
+                    backgroundImage: NetworkImage(state.user.profilePic!),
+                  );
+                } else {
+                  return const CircleAvatar(
+                    radius: 80,
+                    child: Icon(
+                      Icons.person,
+                      size: 90,
+                      color: Colors.black,
+                    ),
+                  );
+                }
+              },
             ),
             BlocBuilder<DatabaseBloc, DatabaseState>(
               builder: (context, state) {

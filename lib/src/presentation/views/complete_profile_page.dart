@@ -1,3 +1,6 @@
+import 'package:fitpulse/src/data/repositories/database_repository.dart';
+import 'package:image_picker/image_picker.dart';
+
 import '../../domain/models/user_model.dart';
 import '../blocs/database_bloc/database_bloc.dart';
 import '../widgets/custom_button.dart';
@@ -58,10 +61,22 @@ class _CompleteProfilePageState extends State<CompleteProfilePage> {
                         color: const Color(0xffF7F7F7)),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(100),
-                      child: const Icon(
-                        Icons.person,
-                        size: 90,
-                        color: Colors.black,
+                      child: BlocBuilder<DatabaseBloc, DatabaseState>(
+                        builder: (context, state) {
+                          if (state is DatabaseCurrentUserState &&
+                              state.user.profilePic != '') {
+                            return Image.network(
+                              state.user.profilePic!,
+                              fit: BoxFit.cover,
+                            );
+                          } else {
+                            return const Icon(
+                              Icons.person,
+                              size: 90,
+                              color: Colors.black,
+                            );
+                          }
+                        },
                       ),
                     ),
                   ),
@@ -77,7 +92,10 @@ class _CompleteProfilePageState extends State<CompleteProfilePage> {
                           shape: BoxShape.circle,
                           color: const Color(0xffF7F7F7)),
                       child: GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          _onImageButtonPressed(ImageSource.gallery,
+                              context: context);
+                        },
                         child: const Icon(Icons.edit,
                             size: 20, color: Colors.black),
                       ),
@@ -211,5 +229,32 @@ class _CompleteProfilePageState extends State<CompleteProfilePage> {
         ),
       ),
     );
+  }
+
+  Future<void> _onImageButtonPressed(ImageSource source,
+      {required BuildContext context}) async {
+    final ImagePicker picker = ImagePicker();
+    try {
+      final XFile? pickedFile = await picker.pickImage(
+        source: source,
+      );
+
+      _setImageFileListFromFile(pickedFile);
+    } catch (e) {
+      // setState(() {
+      //   _pickImageError = e;
+      // });
+    }
+  }
+
+  List<XFile>? _imageFileList;
+
+  void _setImageFileListFromFile(XFile? value) {
+    _imageFileList = value == null ? null : <XFile>[value];
+    if (_imageFileList != null) {
+      print(_imageFileList!.first.path);
+      DatabaseRepository()
+          .uploadProfilePic(_imageFileList!.first.path, userModel);
+    }
   }
 }
