@@ -16,7 +16,7 @@ class FitPulseBottomNavBar extends StatelessWidget {
           ),
       child: Container(
         width: double.infinity,
-        height: 60,
+        height: 65,
         decoration: const BoxDecoration(
           color: Color(0xffffffff),
           borderRadius: BorderRadius.only(

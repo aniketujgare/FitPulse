@@ -1,3 +1,4 @@
+import 'package:fitpulse/src/presentation/blocs/database_bloc/database_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -5,6 +6,7 @@ import 'package:go_router/go_router.dart';
 import '../../data/repositories/auth_repository.dart';
 import '../../presentation/blocs/auth_bloc/auth_bloc.dart';
 import '../../presentation/views/auth_flow.dart';
+import '../../presentation/views/complete_profile_page.dart';
 import '../../presentation/views/exercise_details_page.dart';
 import '../../presentation/views/exercises_page.dart';
 import '../../presentation/views/home_page.dart';
@@ -17,6 +19,7 @@ import '../../presentation/views/workout_page.dart';
 import 'app_router_constants.dart';
 
 final authRepository = AuthRepository();
+final databaseCubit = DatabaseBloc();
 
 class GoRout {
   GoRouter router = GoRouter(
@@ -33,9 +36,16 @@ class GoRout {
         name: GoRoutConstants.createAccountRoutName,
         path: '/',
         pageBuilder: (context, state) => MaterialPage(
-            child: BlocProvider(
-          create: (context) => AuthBloc(authRepository: authRepository)
-            ..add(AuthInitializeEvent()),
+            child: MultiBlocProvider(
+          providers: [
+            BlocProvider(
+              create: (context) => AuthBloc(authRepository: authRepository)
+                ..add(AuthInitializeEvent()),
+            ),
+            BlocProvider(
+              create: (context) => DatabaseBloc()..add(GetCurrentUserEvent()),
+            ),
+          ],
           child: const AuthFlow(),
         )),
       ),
@@ -57,12 +67,15 @@ class GoRout {
         pageBuilder: (context, state) =>
             const MaterialPage(child: ResetPasswordPage()),
       ),
-      // GoRoute(
-      //   name: GoRoutConstants.completeProfileRoutName,
-      //   path: '/completeProfilecompleteProfile',
-      //   pageBuilder: (context, state) =>
-      //       const MaterialPage(child: CompleteProfilePage()),
-      // ),
+      GoRoute(
+        name: GoRoutConstants.completeProfileRoutName,
+        path: '/completeProfilecompleteProfile',
+        pageBuilder: (context, state) => MaterialPage(
+            child: BlocProvider.value(
+          value: databaseCubit..add(GetCurrentUserEvent()),
+          child: const CompleteProfilePage(),
+        )),
+      ),
       GoRoute(
         name: GoRoutConstants.workoutRoutName,
         path: '/workout',
@@ -90,8 +103,11 @@ class GoRout {
       GoRoute(
         name: GoRoutConstants.profileRoutName,
         path: '/profile',
-        pageBuilder: (context, state) =>
-            const MaterialPage(child: ProfilePage()),
+        pageBuilder: (context, state) => MaterialPage(
+            child: BlocProvider(
+          create: (context) => databaseCubit,
+          child: const ProfilePage(),
+        )),
       ),
       GoRoute(
         name: GoRoutConstants.updateProfileRoutName,

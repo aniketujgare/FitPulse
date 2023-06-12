@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+
 import '../../../const.dart';
+import '../widgets/home_page/status_card.dart';
 import '../widgets/report_page/report_card.dart';
 import '../widgets/report_page/report_card_element.dart';
-import '../widgets/home_page/status_card.dart';
 
 class ReportPage extends StatelessWidget {
   const ReportPage({super.key});

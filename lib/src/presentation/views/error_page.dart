@@ -1,8 +1,8 @@
-import 'package:fitpulse/src/presentation/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../blocs/auth_bloc/auth_bloc.dart';
+import '../widgets/custom_button.dart';
 
 class ErrorPage extends StatelessWidget {
   const ErrorPage({super.key});
