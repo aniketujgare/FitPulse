@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../blocs/auth_bloc/auth_bloc.dart';
+import '../../blocs/database_bloc/database_bloc.dart';
 
 class HomeHeader extends StatelessWidget {
   const HomeHeader({
@@ -23,17 +23,17 @@ class HomeHeader extends StatelessWidget {
                   fontFamily: 'Outfit',
                   fontWeight: FontWeight.w500),
             ),
-            BlocBuilder<AuthBloc, AuthState>(
+            BlocBuilder<DatabaseBloc, DatabaseState>(
               builder: (context, state) {
-                if (state is AuthAuthenticated) {
-                  return Text(state.user.name,
+                if (state is DatabaseCurrentUserState) {
+                  return Text(state.user.name ?? 'User',
                       style: const TextStyle(
                           fontWeight: FontWeight.w500,
                           fontFamily: 'Outfit',
                           fontSize: 24,
                           color: Colors.black));
                 } else {
-                  return const Text('');
+                  return const Text('User');
                 }
               },
             ),

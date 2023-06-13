@@ -37,6 +37,7 @@ dependencies:
   flutter_bloc: ^8.1.3
   flutter_svg: ^2.0.6
   go_router: ^7.0.2
+  image_picker: ^0.8.8
   proste_bezier_curve: ^2.0.2
 
 dev_dependencies:

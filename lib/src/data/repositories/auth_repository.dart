@@ -1,7 +1,7 @@
 import 'package:appwrite/appwrite.dart';
-import 'package:appwrite/models.dart' as models;
 import 'package:appwrite/models.dart';
-
+import 'package:fitpulse/src/data/repositories/database_repository.dart';
+import 'package:fitpulse/src/domain/models/user_model.dart';
 import '../datasources/appwrite.dart';
 
 class AuthRepository {
@@ -23,16 +23,18 @@ class AuthRepository {
     return user;
   }
 
-  Future<models.User?> signUp(
+  Future<User?> signUp(
       {String? name, required String email, required String password}) async {
     try {
       var result = await account.create(
         userId: ID.unique(),
         email: email,
         password: password,
-        name: name,
       );
+
       if (result.status == true) {
+        var user = UserModel(email: email, userId: result.$id);
+        DatabaseRepository().createDocumnet(user);
         return login(email: email, password: password);
       }
     } catch (error) {
@@ -41,13 +43,12 @@ class AuthRepository {
     return null;
   }
 
-  Future<models.User> login(
-      {required String email, required String password}) async {
+  Future<User> login({required String email, required String password}) async {
     await account.createEmailSession(
       email: email,
       password: password,
     );
-    return account.get();
+    return await account.get();
   }
   // Future<models.User> resetPassword(
   //     {required String email, required String password}) async {
@@ -59,8 +60,13 @@ class AuthRepository {
   //   return account.get();
   // }
 
-  Future<void> logout() {
-    return account.deleteSession(sessionId: 'current');
+  Future<void> logout() async {
+    try {
+      await account.deleteSession(sessionId: 'current');
+      print('logout: success');
+    } on AppwriteException catch (e) {
+      print('logout: ${e.message!}');
+    }
   }
 
   resetPasswoord() async {

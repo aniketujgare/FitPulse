@@ -1,9 +1,11 @@
 import 'dart:math';
-import 'package:fitpulse/src/presentation/widgets/workout_page/workout_card.dart';
+
 import 'package:flutter/material.dart';
+
 import '../../../const.dart';
 import '../widgets/exercises_page/listtile_trailing.dart';
 import '../widgets/home_page/point_widget.dart';
+import '../widgets/workout_page/workout_card.dart';
 
 class ExercisesPage extends StatelessWidget {
   const ExercisesPage({super.key});
