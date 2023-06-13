@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../widgets/home_page/exercise_card.dart';
 import '../widgets/home_page/home_header.dart';
 import '../widgets/home_page/status_card.dart';

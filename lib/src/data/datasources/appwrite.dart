@@ -13,6 +13,6 @@ class Appwrite {
     client = Client()
         .setEndpoint('https://cloud.appwrite.io/v1')
         .setProject('64690d0eedba385967a1')
-        .setSelfSigned(status: true);
+        .setSelfSigned();
   }
 }

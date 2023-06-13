@@ -29,20 +29,23 @@ class ProfileCard extends StatelessWidget {
           title: Text(
             title,
             style: textStyle.copyWith(
-                fontSize: 12,
-                color: const Color(0xff74777D),
-                fontWeight: FontWeight.w400),
+              fontSize: 12,
+              color: const Color(0xff74777D),
+              fontWeight: FontWeight.w400,
+            ),
           ),
           subtitle: Text(
             titleValue,
-            style: textStyle.copyWith(color: const Color(0xff1E232C)),
+            style: textStyle.copyWith(
+              color: const Color(0xff1E232C),
+            ),
           ),
         ),
         Divider(
           indent: 20,
           endIndent: 20,
           color: const Color(0xff74777D).withOpacity(0.2),
-        )
+        ),
       ],
     );
   }
