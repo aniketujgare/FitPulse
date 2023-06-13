@@ -15,8 +15,8 @@
 > - Goal Setting and Reminders: Users can set specific fitness goals and receive reminders and notifications to stay on track. Whether it's completing a workout, drinking enough water, or taking regular breaks, these reminders help users stay disciplined and motivated.
 >
 > - Educational Resources: The application provides educational resources such as articles, blogs, and videos on fitness, nutrition, and overall wellness. Users can access valuable information to enhance their understanding of health-related topics.
->
-> Live demo [_here_](https://www.example.com). <!-- If you have the project hosted somewhere, include the link here. -->
+<!-- >
+> Live demo [_here_](https://www.example.com). If you have the project hosted somewhere, include the link here. -->
 
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/mit/) 
 
@@ -78,7 +78,7 @@ Project is: in progress.
 
 - Tejas Badone <br> <br>
 <a  href="https://www.linkedin.com/in/tejasbadone/" target="_blank"><img alt="LinkedIn" src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white" /></a>
-<a href="https://twitter.com/BadoneTeja84556" target="_blank"><img src="https://img.shields.io/badge/twitter-%2300acee.svg?&style=for-the-badge&logo=twitter&logoColor=white&alt=twitter" /></a>
+<a href="https://twitter.com/tejasbadone" target="_blank"><img src="https://img.shields.io/badge/twitter-%2300acee.svg?&style=for-the-badge&logo=twitter&logoColor=white&alt=twitter" /></a>
 <a href="mailto:tejas.badone25@gmail.com"><img  alt="Gmail" src="https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white" />
 
 feel free to contact us!
