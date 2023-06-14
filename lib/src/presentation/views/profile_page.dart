@@ -82,7 +82,7 @@ class ProfilePage extends StatelessWidget {
                   email = state.user.email;
                 }
                 return ProfileCard(
-                  title: 'email',
+                  title: 'Email',
                   iconPath: 'assets/svg/mail.svg',
                   titleValue: email,
                 );
@@ -134,8 +134,8 @@ class ProfilePage extends StatelessWidget {
                   height = state.user.height;
                 }
                 return ProfileCard(
-                  title: 'Weight',
-                  iconPath: 'assets/svg/weight.svg',
+                  title: 'Height',
+                  iconPath: 'assets/svg/height.svg',
                   titleValue: '${height ?? '-'}',
                 );
               },

@@ -21,12 +21,10 @@ class WorkoutPage extends StatelessWidget {
         child: Scaffold(
             backgroundColor: const Color(0xffF7F7F7),
             appBar: AppBar(
-              title: const Text(
+              toolbarHeight: 70,
+              title: Text(
                 'Workouts',
-                style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 26),
+                style: textStyle.copyWith(fontSize: 26),
               ),
               backgroundColor: Colors.transparent,
             ),
@@ -35,7 +33,7 @@ class WorkoutPage extends StatelessWidget {
                 return Padding(
                   padding: const EdgeInsets.only(bottom: 75),
                   child: ListView.builder(
-                    itemCount: 5,
+                    itemCount: 6,
                     itemBuilder: (context, index) {
                       final List<String> workouts = [
                         'Chest',
@@ -43,6 +41,7 @@ class WorkoutPage extends StatelessWidget {
                         'Bicep',
                         'Back',
                         'Shoulder',
+                        'Legs',
                       ];
                       final workoutName = workouts[index];
 
@@ -52,6 +51,7 @@ class WorkoutPage extends StatelessWidget {
                         'assets/images/bicep.png',
                         'assets/images/back.png',
                         'assets/images/shoulder.png',
+                        'assets/images/legs.png',
                       ];
 
                       final imgPath = workoutImgs[index];
@@ -64,6 +64,7 @@ class WorkoutPage extends StatelessWidget {
                         Color(0xff38B19D),
                         Color(0xff4883E4),
                         Color(0xff9872E4),
+                        Color(0xffF59A57),
                       ];
                       final iconBackColor = iconColors[index];
 

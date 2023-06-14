@@ -14,6 +14,7 @@ class TextFormFieldPulse extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      style: const TextStyle(color: Colors.black),
       controller: textFieldController,
       textAlign: TextAlign.start,
       decoration: InputDecoration(

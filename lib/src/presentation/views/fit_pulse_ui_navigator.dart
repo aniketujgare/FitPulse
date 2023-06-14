@@ -44,7 +44,7 @@ class FIitPulseUiNavigator extends StatelessWidget {
 
 var screenList = [
   const HomePage(),
-  const ReportPage(),
   const WorkoutPage(),
+  const ReportPage(),
   const ProfilePage(),
 ];

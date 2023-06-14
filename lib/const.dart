@@ -6,7 +6,7 @@ const List<Color> backColors = [
   Color(0xff4CCDB8),
   Color(0xff79A6EF),
   Color(0xffB496F0),
-  Color(0xffEA7E43),
+  Color(0xffF5AC77),
 ];
 
 const textStyle = TextStyle(
