@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cached_video_player/cached_video_player.dart';
+import 'package:shimmer/shimmer.dart';
 
 class WorkoutVideoPlayer extends StatefulWidget {
   const WorkoutVideoPlayer({Key? key, required this.videoUrl})
@@ -35,17 +36,23 @@ class _WorkoutVideoPlayerState extends State<WorkoutVideoPlayer> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Center(
-        child: controller.value.isInitialized
-            ? AspectRatio(
-                aspectRatio: controller.value.aspectRatio,
-                child: CachedVideoPlayer(controller))
-            : Container(
-                height: 200,
-                width: screenWidth * 1,
-                decoration: const BoxDecoration(
-                    color: Colors.pinkAccent,
-                    borderRadius: BorderRadius.all(Radius.circular(18))),
-                child: const Center(child: CircularProgressIndicator()),
-              )); // This trailing comma makes auto-formatting nicer for build methods.
+      child: controller.value.isInitialized
+          ? AspectRatio(
+              aspectRatio: controller.value.aspectRatio,
+              child: CachedVideoPlayer(controller))
+          : Container(
+              height: 200,
+              width: screenWidth * 1,
+              decoration: const BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(18))),
+              child: Shimmer.fromColors(
+                baseColor: Colors.grey.shade300,
+                highlightColor: Colors.grey.shade100,
+                child: Container(
+                  height: 200,
+                  color: Colors.white,
+                ),
+              )),
+    ); // This trailing comma makes auto-formatting nicer for build methods.
   }
 }
