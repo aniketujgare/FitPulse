@@ -11,13 +11,12 @@ class DatabaseRepository {
 
   Databases databases = Databases(Appwrite.instance.client);
   Storage storage = Storage(Appwrite.instance.client);
-
   String createDocumnet(UserModel user) {
     Future result = databases.createDocument(
       databaseId: fitPulseDatabaseId,
       collectionId: usersCollectionId,
       documentId: user.userId,
-      data: user.toMap(),
+      data: user.toJson(),
     );
     result.then((response) {
       print(response);
@@ -28,14 +27,14 @@ class DatabaseRepository {
     return user.userId;
   }
 
-  Future<void> getDocument() async {
-    DocumentList result = await databases.listDocuments(
-        databaseId: fitPulseDatabaseId,
-        collectionId: usersCollectionId,
-        queries: [
-          Query.equal("email", ["aniketujgare@gmail.com"]),
-        ]);
-  }
+  // Future<void> getDocument() async {
+  //   DocumentList result = await databases.listDocuments(
+  //       databaseId: fitPulseDatabaseId,
+  //       collectionId: usersCollectionId,
+  //       queries: [
+  //         Query.equal("email", ["aniketujgare@gmail.com"]),
+  //       ]);
+  // }
 
   Future<UserModel> getCurrentUser() async {
     var userr = await authRepository.getUser();
@@ -46,19 +45,27 @@ class DatabaseRepository {
           Query.equal("email", [userr.email]),
         ]);
     var json = result.documents.first.data;
-    var user = UserModel.fromMap(json);
+    var user = UserModel.fromJson(json);
     return user;
   }
 
   Future<UserModel> updateUserProfile({required UserModel userModel}) async {
-    Document result = await databases.updateDocument(
+    var currUser = await getCurrentUser();
+    DocumentList result = await databases.listDocuments(
       databaseId: fitPulseDatabaseId,
       collectionId: usersCollectionId,
-      documentId: '6486d0346d4013f1a61f',
-      data: userModel.toMap(),
+      queries: [
+        Query.equal("email", [currUser.email]),
+      ],
     );
-    var json = result.data;
-    var user = UserModel.fromMap(json);
+    var docId = result.documents.first.$id;
+    Document res = await databases.updateDocument(
+        databaseId: fitPulseDatabaseId,
+        collectionId: usersCollectionId,
+        documentId: docId,
+        data: userModel.toJson());
+    var json = res.data;
+    var user = UserModel.fromJson(json);
     return user;
   }
 

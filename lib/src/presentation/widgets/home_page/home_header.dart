@@ -40,11 +40,19 @@ class HomeHeader extends StatelessWidget {
           ],
         ),
         const Spacer(),
-        const CircleAvatar(
-            radius: 30,
-            backgroundImage: NetworkImage(
-              'https://i1.sndcdn.com/avatars-000731198008-qqej4c-t500x500.jpg',
-            )),
+        BlocBuilder<DatabaseBloc, DatabaseState>(
+          builder: (context, state) {
+            if (state is DatabaseCurrentUserState) {
+              return CircleAvatar(
+                  radius: 30,
+                  backgroundImage: NetworkImage(
+                    state.user.profilePic!,
+                  ));
+            } else {
+              return Container();
+            }
+          },
+        ),
       ],
     );
   }

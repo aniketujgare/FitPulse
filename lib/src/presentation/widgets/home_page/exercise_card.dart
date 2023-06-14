@@ -78,20 +78,28 @@ class ExerciseCard extends StatelessWidget {
           child: BlocBuilder<ReportBloc, ReportState>(
             builder: (context, state) {
               if (state is ReportLoadedState) {
-                return ListView.builder(
-                  itemCount: state.reportModel.noOfWorkouts,
-                  itemBuilder: (context, index) {
-                    final random = Random();
-                    final pointColor =
-                        backColors[random.nextInt(backColors.length)];
-                    return ExerciseElement(
-                      exerciseName: state.reportModel.exercisesDone[index],
-                      color: pointColor,
-                    );
-                  },
-                );
+                if (state.reportModel.exercisesDone.isEmpty) {
+                  return const Center(
+                    child: Text('Start You Exercise!'),
+                  );
+                } else {
+                  return ListView.builder(
+                    itemCount: state.reportModel.exercisesDone.length,
+                    itemBuilder: (context, index) {
+                      final random = Random();
+                      final pointColor =
+                          backColors[random.nextInt(backColors.length)];
+                      return ExerciseElement(
+                        exerciseName: state.reportModel.exercisesDone[index],
+                        color: pointColor,
+                      );
+                    },
+                  );
+                }
               } else {
-                return Container();
+                return const Center(
+                  child: Text('Start You Exercise!'),
+                );
               }
             },
           ),

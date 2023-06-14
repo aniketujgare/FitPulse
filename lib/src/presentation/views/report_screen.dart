@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../const.dart';
+import '../blocs/database_bloc/database_bloc.dart';
 import '../blocs/report_bloc/report_bloc.dart';
 import '../widgets/home_page/status_card.dart';
 import '../widgets/report_page/report_card.dart';
@@ -119,24 +120,37 @@ class ReportPage extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-              const ReportCard(
-                  title: 'BMI',
-                  pointColor: Color(0xff24786B),
-                  backColor: Color(0xff4CCDB8),
-                  isValueShown: true,
-                  value: '28',
-                  elements: [
-                    ReportCardElement(
-                      name: "Weight",
-                      value: "59",
-                      valueColor: Colors.white,
-                    ),
-                    ReportCardElement(
-                      name: "Height",
-                      value: "169",
-                      valueColor: Colors.white,
-                    ),
-                  ]),
+              BlocBuilder<DatabaseBloc, DatabaseState>(
+                builder: (context, state) {
+                  if (state is DatabaseCurrentUserState) {
+                    var heightSquare = (state.user.height! * 0.01) *
+                        (state.user.height! * 0.01);
+                    var weight = state.user.weight;
+                    var bmival = weight! / heightSquare;
+                    var intBmival = bmival.toInt();
+                    return ReportCard(
+                        title: 'BMI',
+                        pointColor: Color(0xff24786B),
+                        backColor: Color(0xff4CCDB8),
+                        isValueShown: true,
+                        value: '$intBmival',
+                        elements: [
+                          ReportCardElement(
+                            name: "Weight",
+                            value: '${state.user.weight}',
+                            valueColor: Colors.white,
+                          ),
+                          ReportCardElement(
+                            name: "Height",
+                            value: '${state.user.height}',
+                            valueColor: Colors.white,
+                          ),
+                        ]);
+                  } else {
+                    return Container();
+                  }
+                },
+              ),
               const SizedBox(
                 height: 20,
               ),

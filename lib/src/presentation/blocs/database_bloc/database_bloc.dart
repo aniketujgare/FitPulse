@@ -1,3 +1,4 @@
+import 'package:appwrite/models.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -11,14 +12,15 @@ DatabaseRepository database = DatabaseRepository();
 
 class DatabaseBloc extends Bloc<DatabaseEvent, DatabaseState> {
   DatabaseBloc() : super(DatabaseInitial()) {
+    late UserModel user;
     on<GetCurrentUserEvent>((event, emit) async {
       emit(DatabaseLoadingState());
-      var user = await database.getCurrentUser();
+      user = await database.getCurrentUser();
       emit(DatabaseCurrentUserState(user: user));
     });
     on<DispatchUpdateUserProfileEvent>((event, emit) async {
       emit(DatabaseLoadingState());
-      var user = await database.updateUserProfile(userModel: event.userModel);
+      user = await database.updateUserProfile(userModel: event.userModel);
       emit(DatabaseCurrentUserState(user: user));
     });
   }

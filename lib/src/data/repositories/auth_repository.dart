@@ -34,7 +34,18 @@ class AuthRepository {
       );
 
       if (result.status == true) {
-        var user = UserModel(email: email, userId: result.$id);
+        var user = UserModel(
+          email: email,
+          userId: result.$id,
+          age: 20,
+          gender: 'Gender',
+          height: 165,
+          name: 'User',
+          phone: 9990000999,
+          profilePic:
+              'https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1331&q=80',
+          weight: 65,
+        );
         var userId = DatabaseRepository().createDocumnet(user);
         ReportRepository().createNewReport(userId);
         return login(email: email, password: password);

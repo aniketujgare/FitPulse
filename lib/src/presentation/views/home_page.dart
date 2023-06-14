@@ -80,13 +80,16 @@ class HomePage extends StatelessWidget {
                 BlocBuilder<ReportBloc, ReportState>(
                   builder: (context, state) {
                     if (state is ReportLoadedState) {
+                      double wl = state.reportModel.cal * 0.00013;
+                      var weightLoss =
+                          double.parse(wl.toStringAsFixed(2)).toString();
                       return StatusCard(
                         screenHeight: screenHeight,
                         screenWidth: screenWidth,
                         title: 'Weight Loss',
                         primaryColor: const Color(0xffA087D3),
                         cardBackgroundColor: const Color(0xffE0D2FD),
-                        cardValue: '${state.reportModel.cal * 0.00013}',
+                        cardValue: weightLoss,
                         icon: Icons.monitor_weight_outlined,
                         measure: 'Kg',
                       );

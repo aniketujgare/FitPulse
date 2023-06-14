@@ -62,13 +62,17 @@ class ProfilePage extends StatelessWidget {
               },
             ),
             BlocBuilder<DatabaseBloc, DatabaseState>(
+              buildWhen: (previous, current) => true,
               builder: (context, state) {
                 if (state is DatabaseCurrentUserState) {
                   return Text(state.user.name ?? '-',
                       style: textStyle.copyWith(
                           color: const Color(0xffEA7E43), fontSize: 34));
+                } else if (state is DatabaseLoadingState) {
+                  return const Center(child: CircularProgressIndicator());
+                } else {
+                  return const Text('');
                 }
-                return const Text('');
               },
             ),
             const SizedBox(
@@ -92,7 +96,7 @@ class ProfilePage extends StatelessWidget {
               builder: (context, state) {
                 int? age;
                 if (state is DatabaseCurrentUserState) {
-                  age = state.user.height;
+                  age = state.user.age;
                 }
                 return ProfileCard(
                   title: 'Age',

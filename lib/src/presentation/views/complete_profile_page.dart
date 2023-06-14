@@ -127,7 +127,7 @@ class _CompleteProfilePageState extends State<CompleteProfilePage> {
               BlocConsumer<DatabaseBloc, DatabaseState>(
                 listener: (context, state) {
                   if (state is DatabaseCurrentUserState) {
-                    ageController.text = '${state.user.height ?? ''}';
+                    ageController.text = '${state.user.age ?? ''}';
                   }
                 },
                 builder: (context, state) {
