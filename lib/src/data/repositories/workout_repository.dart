@@ -11,6 +11,7 @@ class WorkoutRepository {
   static const String bicepCollectionId = '6488ab5882039747d556';
   static const String backCollectionId = '64887ac18b6f7210bce3';
   static const String shoulderCollectionId = '6488c02ca1f098784ec1';
+  static const String legsCollectionId = '6488c9435081e6243c1f';
   Databases databases = Databases(Appwrite.instance.client);
 
   Future<List<WorkoutModel>> fetchChestWorkout() async {
@@ -78,6 +79,19 @@ class WorkoutRepository {
     return shoulderWorkoutList;
   }
 
+  Future<List<WorkoutModel>> fetchlegsWorkout() async {
+    DocumentList result = await databases.listDocuments(
+      databaseId: workoutDatabaseId,
+      collectionId: legsCollectionId,
+    );
+    List<WorkoutModel> legsWorkoutList = [];
+    for (int i = 0; i < result.documents.length; i++) {
+      legsWorkoutList
+          .add(WorkoutModel.fromMap(result.documents.elementAt(i).data));
+    }
+    return legsWorkoutList;
+  }
+
   Future<List<List<WorkoutModel>>> getAllWorkout() async {
     List<List<WorkoutModel>> workouts = [];
     var cw = await fetchChestWorkout();
@@ -86,12 +100,14 @@ class WorkoutRepository {
     var bw = await fetchbicepWorkout();
     var bbw = await fetchbackWorkout();
     var sw = await fetchshoulderWorkout();
+    var lw = await fetchlegsWorkout();
 
     workouts.add(cw);
     workouts.add(tw);
     workouts.add(bw);
     workouts.add(bbw);
     workouts.add(sw);
+    workouts.add(lw);
     // print(workouts.length);
     return workouts;
   }
