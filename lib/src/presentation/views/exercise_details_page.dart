@@ -1,4 +1,6 @@
+import 'package:fitpulse/src/presentation/blocs/report_bloc/report_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../const.dart';
 import '../../domain/models/workout_model.dart';
@@ -15,6 +17,17 @@ class ExerciseDetailsPage extends StatelessWidget {
     final screenWidth = MediaQuery.of(context).size.width;
     return SafeArea(
         child: Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          //if done add in report
+          context
+              .read<ReportBloc>()
+              .add(AddExerciseToReportEvent(workoutModel: workoutModel));
+          ScaffoldMessenger.of(context)
+              .showSnackBar(const SnackBar(content: Text('Workout Is Done')));
+        },
+        child: const Icon(Icons.done),
+      ),
       backgroundColor: const Color(0xffF7F7F7),
       appBar: AppBar(
         toolbarHeight: 70,
@@ -28,12 +41,12 @@ class ExerciseDetailsPage extends StatelessWidget {
         title: Text(workoutModel.exercise,
             style: textStyle.copyWith(fontSize: 24)),
         backgroundColor: const Color(0xffF7F7F7),
-        actions: const [
+        actions: [
           ListTileTrailing(
-            calories: '24',
+            calories: '${workoutModel.calories}',
             calFontSize: 24,
           ),
-          SizedBox(
+          const SizedBox(
             width: 30,
           )
         ],
@@ -44,15 +57,7 @@ class ExerciseDetailsPage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // VideoApp(url: workoutModel.videoUrl),
               WorkoutVideoPlayer(videoUrl: workoutModel.videoUrl),
-              // Container(
-              //   height: 200,
-              //   width: screenWidth * 1,
-              //   decoration: const BoxDecoration(
-              //       color: Colors.pinkAccent,
-              //       borderRadius: BorderRadius.all(Radius.circular(18))),
-              // ),
               const SizedBox(
                 height: 15,
               ),
@@ -72,22 +77,6 @@ class ExerciseDetailsPage extends StatelessWidget {
               const SizedBox(
                 height: 15,
               ),
-              // Text(
-              //   'Important',
-              //   style: textStyle.copyWith(fontSize: 22),
-              // ),
-              // const SizedBox(
-              //   height: 15,
-              // ),
-              // ExerciseStepsCard(
-              //   screenWidth: screenWidth,
-              //   text1:
-              //       "Start by assuming a high plank position with your hands slightly wider than shoulder-width apart, fingers pointing forward, and arms extended.",
-              //   text2:
-              //       "Lower your body towards the ground by bending your elbows until your chest is just above the floor, keeping your core engaged and your back straight.",
-              //   text3:
-              //       "Push through your palms to extend your arms and raise your body back to the starting position, maintaining a controlled and steady pace throughout the exercise.",
-              // ),
               const SizedBox(
                 height: 15,
               ),

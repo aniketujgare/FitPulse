@@ -1,5 +1,6 @@
 import 'package:appwrite/appwrite.dart';
 import 'package:appwrite/models.dart';
+import 'package:fitpulse/src/config/router/app_router.dart';
 import 'package:fitpulse/src/data/datasources/appwrite.dart';
 
 import '../../domain/models/user_model.dart';
@@ -11,7 +12,7 @@ class DatabaseRepository {
   Databases databases = Databases(Appwrite.instance.client);
   Storage storage = Storage(Appwrite.instance.client);
 
-  void createDocumnet(UserModel user) {
+  String createDocumnet(UserModel user) {
     Future result = databases.createDocument(
       databaseId: fitPulseDatabaseId,
       collectionId: usersCollectionId,
@@ -24,6 +25,7 @@ class DatabaseRepository {
       print(error.response);
     });
     print(user.userId);
+    return user.userId;
   }
 
   Future<void> getDocument() async {
@@ -36,11 +38,12 @@ class DatabaseRepository {
   }
 
   Future<UserModel> getCurrentUser() async {
+    var userr = await authRepository.getUser();
     DocumentList result = await databases.listDocuments(
         databaseId: fitPulseDatabaseId,
         collectionId: usersCollectionId,
         queries: [
-          Query.equal("email", ["aniketujgare@gmail.com"]),
+          Query.equal("email", [userr.email]),
         ]);
     var json = result.documents.first.data;
     var user = UserModel.fromMap(json);

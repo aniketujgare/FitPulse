@@ -1,5 +1,5 @@
-import 'package:fitpulse/src/presentation/widgets/home_page/card_curve.dart';
-import 'package:fitpulse/src/presentation/widgets/report_page/report_card_element.dart';
+import '../home_page/card_curve.dart';
+import 'report_card_element.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../const.dart';

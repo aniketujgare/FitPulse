@@ -1,6 +1,7 @@
 import 'package:appwrite/appwrite.dart';
 import 'package:appwrite/models.dart';
 import 'package:fitpulse/src/data/repositories/database_repository.dart';
+import 'package:fitpulse/src/data/repositories/report_repository.dart';
 import 'package:fitpulse/src/domain/models/user_model.dart';
 import '../datasources/appwrite.dart';
 
@@ -34,7 +35,8 @@ class AuthRepository {
 
       if (result.status == true) {
         var user = UserModel(email: email, userId: result.$id);
-        DatabaseRepository().createDocumnet(user);
+        var userId = DatabaseRepository().createDocumnet(user);
+        ReportRepository().createNewReport(userId);
         return login(email: email, password: password);
       }
     } catch (error) {

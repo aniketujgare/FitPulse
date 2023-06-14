@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../const.dart';
+import '../blocs/report_bloc/report_bloc.dart';
 import '../widgets/home_page/status_card.dart';
 import '../widgets/report_page/report_card.dart';
 import '../widgets/report_page/report_card_element.dart';
 
+// 0.13 1 cal = 0.00013
 class ReportPage extends StatelessWidget {
   const ReportPage({super.key});
 
@@ -26,53 +29,92 @@ class ReportPage extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 20.0),
           child: Column(
             children: [
-              const ReportCard(
-                title: "Today's Status",
-                backColor: Color(0xff070B11),
-                pointColor: Color(0xff74777D),
-                elements: [
-                  ReportCardElement(
-                    name: "Workout",
-                    value: "12",
-                    valueColor: Color(0xff4CCDB8),
-                  ),
-                  ReportCardElement(
-                    name: "Kcal",
-                    value: "1552",
-                    valueColor: Color(0xff4CCDB8),
-                  ),
-                  ReportCardElement(
-                    name: "Time",
-                    value: "126",
-                    valueColor: Color(0xff4CCDB8),
-                  ),
-                ],
+              BlocBuilder<ReportBloc, ReportState>(
+                builder: (context, state) {
+                  if (state is ReportLoadedState) {
+                    return ReportCard(
+                      title: "Today's Status",
+                      backColor: const Color(0xff070B11),
+                      pointColor: const Color(0xff74777D),
+                      elements: [
+                        ReportCardElement(
+                          name: "Workout",
+                          value: '${state.reportModel.noOfWorkouts}',
+                          valueColor: const Color(0xff4CCDB8),
+                        ),
+                        ReportCardElement(
+                          name: "Kcal",
+                          value: '${state.reportModel.cal}',
+                          valueColor: const Color(0xff4CCDB8),
+                        ),
+                        ReportCardElement(
+                          name: "Time",
+                          value: '${state.reportModel.time}',
+                          valueColor: const Color(0xff4CCDB8),
+                        ),
+                      ],
+                    );
+                  } else if (state is ReportLoading) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  } else {
+                    return Container();
+                  }
+                },
               ),
               const SizedBox(
                 height: 20,
               ),
-              StatusCard(
-                screenHeight: screenHeight,
-                screenWidth: screenWidth,
-                title: 'Calories Loss',
-                primaryColor: const Color(0xffEA7E43),
-                cardBackgroundColor: const Color(0xffFCDCB2),
-                cardValue: '15',
-                icon: Icons.local_fire_department,
-                measure: 'Kcal',
+              BlocBuilder<ReportBloc, ReportState>(
+                buildWhen: (previous, current) => true,
+                builder: (context, state) {
+                  if (state is ReportLoadedState) {
+                    return StatusCard(
+                      screenHeight: screenHeight,
+                      screenWidth: screenWidth,
+                      title: 'Calories Loss',
+                      primaryColor: const Color(0xffEA7E43),
+                      cardBackgroundColor: const Color(0xffFCDCB2),
+                      cardValue: '${state.reportModel.cal}',
+                      icon: Icons.local_fire_department,
+                      measure: 'Kcal',
+                    );
+                  } else if (state is ReportLoading) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  } else {
+                    return Container();
+                  }
+                },
               ),
               const SizedBox(
                 height: 20,
               ),
-              StatusCard(
-                screenWidth: screenWidth,
-                screenHeight: screenHeight,
-                title: 'Weight Loss',
-                primaryColor: const Color(0xffA087D3),
-                cardBackgroundColor: const Color(0xffE0D2FD),
-                cardValue: '12',
-                icon: Icons.monitor_weight_outlined,
-                measure: 'Kg',
+              BlocBuilder<ReportBloc, ReportState>(
+                buildWhen: (previous, current) => true,
+                builder: (context, state) {
+                  if (state is ReportLoadedState) {
+                    double n = state.reportModel.cal * 0.00013;
+                    return StatusCard(
+                      screenWidth: screenWidth,
+                      screenHeight: screenHeight,
+                      title: 'Weight Loss',
+                      primaryColor: const Color(0xffA087D3),
+                      cardBackgroundColor: const Color(0xffE0D2FD),
+                      cardValue: double.parse(n.toStringAsFixed(2)).toString(),
+                      icon: Icons.monitor_weight_outlined,
+                      measure: 'Kg',
+                    );
+                  } else if (state is ReportLoading) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  } else {
+                    return Container();
+                  }
+                },
               ),
               const SizedBox(
                 height: 20,
@@ -98,6 +140,7 @@ class ReportPage extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
+              const SizedBox(height: 75),
             ],
           ),
         ),

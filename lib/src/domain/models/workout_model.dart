@@ -4,7 +4,7 @@ import 'dart:convert';
 class WorkoutModel {
   final String exercise;
   final int calories;
-  final int? time;
+  final int time;
   final String videoUrl;
   final String step1;
   final String step2;
