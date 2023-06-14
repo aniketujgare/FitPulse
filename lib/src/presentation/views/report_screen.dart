@@ -73,7 +73,7 @@ class ReportPage extends StatelessWidget {
                     return StatusCard(
                       screenHeight: screenHeight,
                       screenWidth: screenWidth,
-                      title: 'Calories Loss',
+                      title: 'Calories Loss so far',
                       primaryColor: const Color(0xffEA7E43),
                       cardBackgroundColor: const Color(0xffFCDCB2),
                       cardValue: '${state.reportModel.cal}',
@@ -100,7 +100,7 @@ class ReportPage extends StatelessWidget {
                     return StatusCard(
                       screenWidth: screenWidth,
                       screenHeight: screenHeight,
-                      title: 'Weight Loss',
+                      title: 'Weight Loss so far',
                       primaryColor: const Color(0xffA087D3),
                       cardBackgroundColor: const Color(0xffE0D2FD),
                       cardValue: double.parse(n.toStringAsFixed(2)).toString(),
