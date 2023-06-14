@@ -1,4 +1,4 @@
-import 'package:fitpulse/const.dart';
+import 'package:fitpulse/src/presentation/widgets/exercise_details_page/exercise_explanation.dart';
 import 'package:fitpulse/src/presentation/widgets/home_page/point_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -11,46 +11,38 @@ class ExerciseElement extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 22),
-      child: Row(
-        children: [
-          PointWidget(pointColor: color),
-          const SizedBox(
-            width: 15,
+        padding: const EdgeInsets.only(left: 8, right: 0, top: 6, bottom: 5),
+        child: ListTile(
+          leading: PointWidget(pointColor: color),
+          title: Text(
+            exerciseName,
+            style: const TextStyle(
+                fontSize: 16,
+                fontFamily: 'Outfit',
+                fontWeight: FontWeight.w500,
+                color: Colors.black),
           ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                exerciseName,
-                style: textStyle,
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
+          trailing: SizedBox(
+            width: 50,
+            child: Row(children: [
+              Icon(
+                Icons.timer,
+                size: 20,
+                color: const Color(0xff74777D).withOpacity(0.5),
+              ),
+              const SizedBox(
+                width: 5,
               ),
               const Text(
-                "Biceps, Triceps, Shoulders",
-                style: TextStyle(fontSize: 12, color: Color(0xff74777D)),
+                '10',
+                style: TextStyle(
+                    color: Colors.black,
+                    fontFamily: 'Oswald',
+                    fontSize: 18,
+                    fontWeight: FontWeight.w500),
               )
-            ],
+            ]),
           ),
-          const Spacer(),
-          Icon(
-            Icons.timer,
-            color: const Color(0xff74777D).withOpacity(0.5),
-          ),
-          const SizedBox(
-            width: 8,
-          ),
-          const Text(
-            '10',
-            style: TextStyle(
-                color: Colors.black,
-                fontFamily: 'Oswald',
-                fontSize: 20,
-                fontWeight: FontWeight.w500),
-          ),
-        ],
-      ),
-    );
+        ));
   }
 }

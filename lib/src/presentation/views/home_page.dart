@@ -28,7 +28,7 @@ class HomePage extends StatelessWidget {
                   height: 30,
                 ),
                 const Text(
-                  "Today's Exercise",
+                  "Today's Completed Exercise",
                   style: TextStyle(
                       color: Colors.black,
                       fontSize: 25,
@@ -46,7 +46,7 @@ class HomePage extends StatelessWidget {
                   height: 15,
                 ),
                 const Text(
-                  "Today's Status",
+                  "Today's Stats",
                   style: TextStyle(
                       color: Colors.black,
                       fontSize: 25,
@@ -80,13 +80,15 @@ class HomePage extends StatelessWidget {
                 BlocBuilder<ReportBloc, ReportState>(
                   builder: (context, state) {
                     if (state is ReportLoadedState) {
+                      final cardValue = state.reportModel.cal * 0.00013;
+
                       return StatusCard(
                         screenHeight: screenHeight,
                         screenWidth: screenWidth,
                         title: 'Weight Loss',
                         primaryColor: const Color(0xffA087D3),
                         cardBackgroundColor: const Color(0xffE0D2FD),
-                        cardValue: '${state.reportModel.cal * 0.00013}',
+                        cardValue: cardValue.toStringAsFixed(2),
                         icon: Icons.monitor_weight_outlined,
                         measure: 'Kg',
                       );
