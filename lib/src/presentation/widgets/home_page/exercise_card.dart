@@ -58,7 +58,7 @@ class ExerciseCard extends StatelessWidget {
                 child: RotatedBox(
                   quarterTurns: 3,
                   child: Text(
-                    '#CHEST_DAY',
+                    '#COMPLETED',
                     style: TextStyle(
                         fontFamily: 'Oswald',
                         fontWeight: FontWeight.bold,

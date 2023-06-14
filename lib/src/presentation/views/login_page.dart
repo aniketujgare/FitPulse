@@ -65,6 +65,7 @@ class _LoginPageState extends State<LoginPage> {
                           textFieldController: passwordController),
                       const SizedBox(height: 10),
                       Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           TextButton(
                             onPressed: () {

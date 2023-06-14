@@ -25,6 +25,7 @@ class StatusCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double cardDoubleValue = double.parse(cardValue);
     return Container(
       height: screenHeight * 0.24,
       width: screenWidth * 0.9,
@@ -48,7 +49,7 @@ class StatusCard extends StatelessWidget {
         ),
         Positioned(
           bottom: 0,
-          left: 60,
+          left: cardDoubleValue < 1 ? 30 : 40,
           child: StatusCardData(
             cardValue: cardValue,
             statusCardColor: primaryColor,
@@ -82,13 +83,13 @@ class StatusCardData extends StatelessWidget {
         Text(
           cardValue,
           style: TextStyle(
-              fontSize: 145,
+              fontSize: 130,
               fontFamily: 'Oswald',
               fontWeight: FontWeight.bold,
               color: statusCardColor),
         ),
         const SizedBox(
-          width: 60,
+          width: 10,
         ),
         Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -105,12 +106,12 @@ class StatusCardData extends StatelessWidget {
               height: 8,
             ),
             Container(
-              height: 80,
-              width: 80,
+              height: 70,
+              width: 70,
               decoration: BoxDecoration(
                   color: statusCardColor,
                   borderRadius: const BorderRadius.all(Radius.circular(12))),
-              child: Icon(icon, size: 65),
+              child: Icon(icon, size: 50),
             )
           ],
         )

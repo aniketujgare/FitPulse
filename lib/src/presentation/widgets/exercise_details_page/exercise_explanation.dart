@@ -7,19 +7,18 @@ class ExerciseExplanation extends StatelessWidget {
     super.key,
     required this.pointColor,
     required this.text,
+    this.style = const TextStyle(color: Color(0xff74777D)),
   });
 
   final Color pointColor;
   final String text;
+  final TextStyle style;
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
       leading: PointWidget(pointColor: pointColor),
-      title: Text(
-        text,
-        style: const TextStyle(color: Color(0xff74777D)),
-      ),
+      title: Text(text, style: style),
     );
   }
 }

@@ -34,7 +34,7 @@ class ReportPage extends StatelessWidget {
                 builder: (context, state) {
                   if (state is ReportLoadedState) {
                     return ReportCard(
-                      title: "Today's Status",
+                      title: "Today's Stats",
                       backColor: const Color(0xff070B11),
                       pointColor: const Color(0xff74777D),
                       elements: [
@@ -49,7 +49,7 @@ class ReportPage extends StatelessWidget {
                           valueColor: const Color(0xff4CCDB8),
                         ),
                         ReportCardElement(
-                          name: "Time",
+                          name: "Time(mins)",
                           value: '${state.reportModel.time}',
                           valueColor: const Color(0xff4CCDB8),
                         ),
@@ -74,7 +74,7 @@ class ReportPage extends StatelessWidget {
                     return StatusCard(
                       screenHeight: screenHeight,
                       screenWidth: screenWidth,
-                      title: 'Calories Loss',
+                      title: 'Calories Loss so far',
                       primaryColor: const Color(0xffEA7E43),
                       cardBackgroundColor: const Color(0xffFCDCB2),
                       cardValue: '${state.reportModel.cal}',
@@ -101,7 +101,7 @@ class ReportPage extends StatelessWidget {
                     return StatusCard(
                       screenWidth: screenWidth,
                       screenHeight: screenHeight,
-                      title: 'Weight Loss',
+                      title: 'Weight Loss so far',
                       primaryColor: const Color(0xffA087D3),
                       cardBackgroundColor: const Color(0xffE0D2FD),
                       cardValue: double.parse(n.toStringAsFixed(2)).toString(),
