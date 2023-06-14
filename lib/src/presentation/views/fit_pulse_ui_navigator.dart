@@ -3,11 +3,11 @@ import 'package:flutter/services.dart' show SystemUiOverlayStyle;
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../blocs/app_navigator_cubit/app_navigator_cubit.dart';
-import 'exercise_details_page.dart';
 import 'fit_pulse_bottom_navbar.dart';
 import 'home_page.dart';
 import 'profile_page.dart';
 import 'report_screen.dart';
+import 'workout_page.dart';
 
 class FIitPulseUiNavigator extends StatelessWidget {
   const FIitPulseUiNavigator({super.key});
@@ -45,6 +45,6 @@ class FIitPulseUiNavigator extends StatelessWidget {
 var screenList = [
   const HomePage(),
   const ReportPage(),
-  const ExerciseDetailsPage(),
+  const WorkoutPage(),
   const ProfilePage(),
 ];

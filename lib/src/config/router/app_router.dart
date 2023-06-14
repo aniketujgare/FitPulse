@@ -1,4 +1,8 @@
+import 'package:fitpulse/src/data/repositories/workout_repository.dart';
+import 'package:fitpulse/src/domain/models/exercise_screen_model.dart';
+import 'package:fitpulse/src/domain/models/workout_model.dart';
 import 'package:fitpulse/src/presentation/blocs/database_bloc/database_bloc.dart';
+import 'package:fitpulse/src/presentation/blocs/workout_bloc/workout_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -20,6 +24,8 @@ import 'app_router_constants.dart';
 
 final authRepository = AuthRepository();
 final databaseCubit = DatabaseBloc();
+final workoutRepository = WorkoutRepository();
+final workoutBloc = WorkoutBloc(workoutRepository: workoutRepository);
 
 class GoRout {
   GoRouter router = GoRouter(
@@ -45,6 +51,9 @@ class GoRout {
             BlocProvider(
               create: (context) => DatabaseBloc()..add(GetCurrentUserEvent()),
             ),
+            BlocProvider(
+              create: (context) => workoutBloc..add(GetAllWorkoutEvent()),
+            ),
           ],
           child: const AuthFlow(),
         )),
@@ -69,7 +78,7 @@ class GoRout {
       ),
       GoRoute(
         name: GoRoutConstants.completeProfileRoutName,
-        path: '/completeProfilecompleteProfile',
+        path: '/completeProfile',
         pageBuilder: (context, state) => MaterialPage(
             child: BlocProvider.value(
           value: databaseCubit..add(GetCurrentUserEvent()),
@@ -85,14 +94,12 @@ class GoRout {
       GoRoute(
         name: GoRoutConstants.exercisesRoutName,
         path: '/exercises',
-        pageBuilder: (context, state) =>
-            const MaterialPage(child: ExercisesPage()),
-      ),
-      GoRoute(
-        name: GoRoutConstants.exercisedetailsRoutName,
-        path: '/exerciseDetails',
-        pageBuilder: (context, state) =>
-            const MaterialPage(child: ExerciseDetailsPage()),
+        pageBuilder: (context, state) => MaterialPage(
+            child: BlocProvider.value(
+          value: workoutBloc,
+          child: ExercisesPage(
+              exerciseScreenModel: state.extra as ExerciseScreenModel),
+        )),
       ),
       GoRoute(
         name: GoRoutConstants.reportRoutName,
@@ -108,6 +115,18 @@ class GoRout {
           create: (context) => databaseCubit,
           child: const ProfilePage(),
         )),
+      ),
+      GoRoute(
+        name: GoRoutConstants.exercisedetailsRoutName,
+        path: '/exerciseDetails',
+        pageBuilder: (context, state) {
+          return MaterialPage(
+              child: BlocProvider.value(
+            value: workoutBloc..add(GetAllWorkoutEvent()),
+            child:
+                ExerciseDetailsPage(workoutModel: state.extra as WorkoutModel),
+          ));
+        },
       ),
       GoRoute(
         name: GoRoutConstants.updateProfileRoutName,

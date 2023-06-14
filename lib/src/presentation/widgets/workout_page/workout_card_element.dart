@@ -7,11 +7,13 @@ class WorkoutCardElement extends StatelessWidget {
     required this.workout,
     required this.iconBackColor,
     this.iconColor = Colors.white,
+    required this.noOfExercises,
   });
 
   final String workout;
   final Color iconBackColor;
   final Color iconColor;
+  final int noOfExercises;
 
   final headStyle = const TextStyle(
       color: Colors.black,
@@ -53,7 +55,7 @@ class WorkoutCardElement extends StatelessWidget {
                 width: 10,
               ),
               Text(
-                '5 Exercises',
+                '$noOfExercises Exercises',
                 style: headStyle.copyWith(
                   fontWeight: FontWeight.w300,
                   fontSize: 20,
