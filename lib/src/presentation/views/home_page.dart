@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../blocs/report_bloc/report_bloc.dart';
 import '../widgets/home_page/exercise_card.dart';
 import '../widgets/home_page/home_header.dart';
 import '../widgets/home_page/status_card.dart';
@@ -54,28 +56,44 @@ class HomePage extends StatelessWidget {
                 const SizedBox(
                   height: 15,
                 ),
-                StatusCard(
-                  screenHeight: screenHeight,
-                  screenWidth: screenWidth,
-                  title: 'Calories Loss',
-                  primaryColor: const Color(0xffEA7E43),
-                  cardBackgroundColor: const Color(0xffFCDCB2),
-                  cardValue: '15',
-                  icon: Icons.local_fire_department,
-                  measure: 'Kcal',
+                BlocBuilder<ReportBloc, ReportState>(
+                  builder: (context, state) {
+                    if (state is ReportLoadedState) {
+                      return StatusCard(
+                        screenHeight: screenHeight,
+                        screenWidth: screenWidth,
+                        title: 'Calories Loss',
+                        primaryColor: const Color(0xffEA7E43),
+                        cardBackgroundColor: const Color(0xffFCDCB2),
+                        cardValue: '${state.reportModel.cal}',
+                        icon: Icons.local_fire_department,
+                        measure: 'Kcal',
+                      );
+                    } else {
+                      return Container();
+                    }
+                  },
                 ),
                 const SizedBox(
                   height: 20,
                 ),
-                StatusCard(
-                  screenHeight: screenHeight,
-                  screenWidth: screenWidth,
-                  title: 'Weight Loss',
-                  primaryColor: const Color(0xffA087D3),
-                  cardBackgroundColor: const Color(0xffE0D2FD),
-                  cardValue: '12',
-                  icon: Icons.monitor_weight_outlined,
-                  measure: 'Kg',
+                BlocBuilder<ReportBloc, ReportState>(
+                  builder: (context, state) {
+                    if (state is ReportLoadedState) {
+                      return StatusCard(
+                        screenHeight: screenHeight,
+                        screenWidth: screenWidth,
+                        title: 'Weight Loss',
+                        primaryColor: const Color(0xffA087D3),
+                        cardBackgroundColor: const Color(0xffE0D2FD),
+                        cardValue: '${state.reportModel.cal * 0.00013}',
+                        icon: Icons.monitor_weight_outlined,
+                        measure: 'Kg',
+                      );
+                    } else {
+                      return Container();
+                    }
+                  },
                 ),
                 const SizedBox(
                   height: 75,

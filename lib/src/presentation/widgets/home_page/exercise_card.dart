@@ -1,9 +1,11 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../../../const.dart';
+import '../../blocs/report_bloc/report_bloc.dart';
 import 'exercise_element.dart';
 
 class ExerciseCard extends StatelessWidget {
@@ -73,16 +75,26 @@ class ExerciseCard extends StatelessWidget {
           decoration: const BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.all(Radius.circular(15))),
-          child: ListView.builder(
-              itemCount: 4,
-              itemBuilder: (context, index) {
-                final random = Random();
-                final pointColor =
-                    backColors[random.nextInt(backColors.length)];
-                return ExerciseElement(
-                  color: pointColor,
+          child: BlocBuilder<ReportBloc, ReportState>(
+            builder: (context, state) {
+              if (state is ReportLoadedState) {
+                return ListView.builder(
+                  itemCount: state.reportModel.noOfWorkouts,
+                  itemBuilder: (context, index) {
+                    final random = Random();
+                    final pointColor =
+                        backColors[random.nextInt(backColors.length)];
+                    return ExerciseElement(
+                      exerciseName: state.reportModel.exercisesDone[index],
+                      color: pointColor,
+                    );
+                  },
                 );
-              }),
+              } else {
+                return Container();
+              }
+            },
+          ),
         ),
       ],
     );

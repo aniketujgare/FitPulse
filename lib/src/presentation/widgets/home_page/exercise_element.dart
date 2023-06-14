@@ -3,7 +3,9 @@ import 'package:fitpulse/src/presentation/widgets/home_page/point_widget.dart';
 import 'package:flutter/material.dart';
 
 class ExerciseElement extends StatelessWidget {
-  const ExerciseElement({super.key, this.color});
+  final String exerciseName;
+
+  const ExerciseElement({super.key, this.color, required this.exerciseName});
   final dynamic color;
 
   @override
@@ -16,14 +18,16 @@ class ExerciseElement extends StatelessWidget {
           const SizedBox(
             width: 15,
           ),
-          const Column(
+          Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Push-Ups',
+                exerciseName,
                 style: textStyle,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
               ),
-              Text(
+              const Text(
                 "Biceps, Triceps, Shoulders",
                 style: TextStyle(fontSize: 12, color: Color(0xff74777D)),
               )
