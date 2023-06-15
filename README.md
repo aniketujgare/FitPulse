@@ -8,6 +8,10 @@ Introducing FitPulse, a comprehensive and user-friendly fitness app designed to 
 
 
 
+https://github.com/aniketujgare/FitPulse/assets/13385338/92bc8e70-1928-4488-9a58-bd3db0694b15
+
+
+
 
 
 
