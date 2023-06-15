@@ -4,6 +4,7 @@
 Introducing FitPulse, a comprehensive and user-friendly fitness app designed to help individuals achieve their health and fitness goals. FitPulse boasts an extensive exercise library categorized by body parts, allowing users to access a wide variety of exercises easily. Each exercise is accompanied by detailed instructions, images, and video or animated tutorials, ensuring users maintain proper form and technique. With various features and tools, FitPulse aims to make fitness accessible, enjoyable, and effective for users of all fitness levels.
 
 
+![alt text](https://cloud.appwrite.io/v1/storage/buckets/648a69cc3b84a00d6eac/files/648a69f1077e232deb03/view?project=64690d0eedba385967a1&mode=admin)
 
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/mit/) 
 
