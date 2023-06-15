@@ -25,7 +25,7 @@ import '../../presentation/views/workout_page.dart';
 import 'app_router_constants.dart';
 
 final authRepository = AuthRepository();
-final databaseCubit = DatabaseBloc();
+final databaseBloc = DatabaseBloc();
 final workoutRepository = WorkoutRepository();
 final workoutBloc = WorkoutBloc(workoutRepository: workoutRepository);
 final reportRepository = ReportRepository();
@@ -45,7 +45,7 @@ class GoRout {
                 ..add(AuthInitializeEvent()),
             ),
             BlocProvider(
-              create: (context) => DatabaseBloc()..add(GetCurrentUserEvent()),
+              create: (context) => databaseBloc..add(GetCurrentUserEvent()),
             ),
             BlocProvider(
               create: (context) => workoutBloc..add(GetAllWorkoutEvent()),
@@ -80,7 +80,7 @@ class GoRout {
         path: '/completeProfile',
         pageBuilder: (context, state) => MaterialPage(
             child: BlocProvider.value(
-          value: databaseCubit..add(GetCurrentUserEvent()),
+          value: databaseBloc..add(GetCurrentUserEvent()),
           child: const CompleteProfilePage(),
         )),
       ),
@@ -113,8 +113,8 @@ class GoRout {
         name: GoRoutConstants.profileRoutName,
         path: '/profile',
         pageBuilder: (context, state) => MaterialPage(
-            child: BlocProvider(
-          create: (context) => databaseCubit,
+            child: BlocProvider.value(
+          value: databaseBloc,
           child: const ProfilePage(),
         )),
       ),
