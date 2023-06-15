@@ -7,7 +7,7 @@ Introducing FitPulse, a comprehensive and user-friendly fitness app designed to 
 ![alt text](https://cloud.appwrite.io/v1/storage/buckets/648a69cc3b84a00d6eac/files/648a69f1077e232deb03/view?project=64690d0eedba385967a1&mode=admin)
 
 
-https://github.com/aniketujgare/FitPulse/assets/13385338/5ab3f35b-06e0-40c1-add1-10529d2e6089
+
 
 
 
