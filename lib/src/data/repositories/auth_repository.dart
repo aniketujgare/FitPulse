@@ -1,8 +1,13 @@
 import 'package:appwrite/appwrite.dart';
 import 'package:appwrite/models.dart';
+import 'package:fitpulse/src/config/router/app_router.dart';
 import 'package:fitpulse/src/data/repositories/database_repository.dart';
 import 'package:fitpulse/src/data/repositories/report_repository.dart';
 import 'package:fitpulse/src/domain/models/user_model.dart';
+import 'package:fitpulse/src/presentation/blocs/database_bloc/database_bloc.dart';
+import 'package:fitpulse/src/presentation/blocs/report_bloc/report_bloc.dart';
+import 'package:fitpulse/src/presentation/blocs/workout_bloc/workout_bloc.dart';
+import 'package:restart_app/restart_app.dart';
 import '../datasources/appwrite.dart';
 
 class AuthRepository {
@@ -75,8 +80,9 @@ class AuthRepository {
 
   Future<void> logout() async {
     try {
-      await account.deleteSession(sessionId: 'current');
+      await account.deleteSessions();
       print('logout: success');
+      Restart.restartApp(webOrigin: '/');
     } on AppwriteException catch (e) {
       print('logout: ${e.message!}');
     }
